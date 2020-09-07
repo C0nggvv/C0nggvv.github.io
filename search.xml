@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>vlan及三层交换的简单复习</title>
+      <link href="/2020/09/07/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%A4%8D%E4%B9%A0/"/>
+      <url>/2020/09/07/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%A4%8D%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-交换机的作用"><a href="#1-交换机的作用" class="headerlink" title="1.交换机的作用"></a>1.交换机的作用</h2><p>交换机工作在数据链路层，根据MAC地址进行数据的转发。</p><h2 id="2-VLAN"><a href="#2-VLAN" class="headerlink" title="2. VLAN"></a>2. VLAN</h2><h3 id="vlan-的作用"><a href="#vlan-的作用" class="headerlink" title="vlan 的作用"></a>vlan 的作用</h3><p>Virtual Local Area Network简写VLAN，即虚拟局域网。</p><p>一种将局域网（LAN）设备从<strong>逻辑</strong>上划分（注意，不是从物理上划分）成一个个网段（或者说是更小的局域网LAN），从而实现虚拟工作组（单元）的数据交换技术。</p><p>VLAN除了<strong>能将网络划分为多个广播域</strong>，从而有效地控制广播风暴的发生，以及使网络的拓扑结构变得非常灵活的优点外，还可以用于控制网络中不同部门、不同站点之间的互相访问。</p><h3 id="配置vlan-命令"><a href="#配置vlan-命令" class="headerlink" title="配置vlan 命令"></a>配置vlan 命令</h3><p>交换机 VLAN配置命令</p><pre><code>Switch(config-if)#vlan 2 name vlan2Switch(config-vlan)#interface fa0/23Switch(config-if)#switchport access vlan 2</code></pre><p>交换机配trunk</p><p>交换机之间互联的端口为串口（Trunk）</p><pre><code>Switch(config-if)#interface fa0/1Switch(config-if)#switchport mode trunk</code></pre><p>配完 vlan和 trunk后仍ping不同？</p><p>每个交换机都要配置 vlan，包括只跟交换机相连的交换机！</p><p>删除vlan</p><pre><code>Switch(config-if)#no vlan 2</code></pre><h2 id="3-三层交换"><a href="#3-三层交换" class="headerlink" title="3.三层交换"></a>3.三层交换</h2><h3 id="三层交换技术"><a href="#三层交换技术" class="headerlink" title="三层交换技术"></a>三层交换技术</h3><p>三层交换技术就是：二层交换技术+三层转发技术。</p><p>它解决了局域网中网段划分之后，网段中子网必须依赖路由器进行管理的局面，解决了传统路由器低速、复杂所造成的网络瓶颈问题。</p><h3 id="有路由器了为什么还需要三层交换机？"><a href="#有路由器了为什么还需要三层交换机？" class="headerlink" title="有路由器了为什么还需要三层交换机？"></a>有路由器了为什么还需要三层交换机？</h3><p>三层交换机就是具有部分路由器功能的交换机。</p><p>路由器的三层转发主要依靠CPU进行，而三层交换机的三层转发依靠ASIC芯片完成，这就决定了两者在转发性能上的巨大差别。</p><blockquote><p>三层交换机的最重要的功能是加快大型局域网络内部的数据的快速转发，加入路由功能也是为这个目的服务的。如果把大型网络按照部门，地域等等因素划分成一个个小局域网，这将导致大量的网际互访，单纯的使用二层交换机不能实现网际互访；如单纯的使用路由器，由于接口数量有限和路由转发速度慢，将限制网络的速度和网络规模，采用具有路由功能的快速转发的三层交换机就成为首选。</p></blockquote><p>当然，三层交换机并不能完全替代路由器，路由器所具备的丰富的接口类型、良好的流量服务等级控制、强大的路有能力等仍然是三层交换机的薄弱环节。</p><p>目前的三层交换机一般是通过VLAN来划分二层网络并实现二层交换的，同时能够实现不同VLAN间的三层IP互访。</p><p>较好的参考文献：<a href="https://baijiahao.baidu.com/s?id=1589735136955813160&wfr=spider&for=pc" target="_blank" rel="noopener">二层交换机与三层交换机区别详解</a></p><h2 id="4-三层交换机配置"><a href="#4-三层交换机配置" class="headerlink" title="4.三层交换机配置"></a>4.三层交换机配置</h2><pre><code>Switch(config-if)#ip routing  //开启三层交换功能Switch(config)#vlan 2Switch(config-vlan)#interface vlan 2Switch(config-if)#ip address 192.168.1.254 255.255.255.0</code></pre><p>配好vlan和三层交换机后，仍ping不通？</p><p>还要配置主机的网关！</p><p>注：不同vlan同一网段不知道如何实现互通，只掌握了不同vlan，不同网段互通。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网络系统 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo如何发布文章到博客上</title>
       <link href="/2020/09/07/hexo%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
       <url>/2020/09/07/hexo%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
