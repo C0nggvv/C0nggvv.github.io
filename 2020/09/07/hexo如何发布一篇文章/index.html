@@ -105,7 +105,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    3.1k
+                    3.2k
                 </span>
                 
                 
@@ -153,23 +153,27 @@
 <p>3.可以输入<code>hexo s</code>（<code>hexo server</code>）进行本地预览，地址为 *<em>localhost:4000 *</em> 。</p>
 <p>4.没有问题后，输入命令<code>hexo d</code> （<code>hexo display</code>），将本地文件发布到github仓库上。</p>
 <h2 id="如何新建一篇文章"><a href="#如何新建一篇文章" class="headerlink" title="如何新建一篇文章"></a>如何新建一篇文章</h2><p>hexo新建一篇文章的命令为</p>
-<pre><code>hexo new [layout] &lt;title&gt;</code></pre><p>如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，需要使用引号括起来。例如：</p>
-<pre><code></code></pre><h2 id="新建文章中的-是干什么的"><a href="#新建文章中的-是干什么的" class="headerlink" title="新建文章中的---是干什么的"></a>新建文章中的<code>---</code>是干什么的</h2><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
-<pre><code>---
+<pre><code class="bash">hexo new [layout] &lt;title&gt;</code></pre>
+<p>如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，需要使用引号括起来。例如：</p>
+<pre><code class="bash">hexo new &quot;post title with whitespace&quot;</code></pre>
+<h2 id="新建文章中的-是干什么的"><a href="#新建文章中的-是干什么的" class="headerlink" title="新建文章中的---是干什么的"></a>新建文章中的<code>---</code>是干什么的</h2><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<pre><code class="markdown">---
 title: Hello World
 date: 2013/7/13 20:46:25
----</code></pre><p>为文章添加分类和标签即是在此区域添加。</p>
+---</code></pre>
+<p>为文章添加分类和标签即是在此区域添加。</p>
 <h2 id="如何给文章添加分类"><a href="#如何给文章添加分类" class="headerlink" title="如何给文章添加分类"></a>如何给文章添加分类</h2><p>前面可能部分需要自己手动添加创建“分类”选项，可参考最后的<a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">参考链接</a>，这里没有叙述。</p>
 <p>若想给文章添加分类只需给文章添加“categories”属性即可，如下面的例子：</p>
-<pre><code>---
+<pre><code class="markdown">---
 title: Hexo 添加分类及标签
 date: 2017-05-26 12:12:57
 categories: Hexo
----</code></pre><p>添加好分类后，点击博客中每个分类就可以看到该分类下的所有文章（即包含categories: xxx的所有文章）。</p>
+---</code></pre>
+<p>添加好分类后，点击博客中每个分类就可以看到该分类下的所有文章（即包含categories: xxx的所有文章）。</p>
 <p>注意事项：<strong>分类具有顺序性和层次性</strong>，hexo一篇文章只能属于一个分类，如在”- web前端“下面添加”-xxx“不会产生并列的两个分类，而是会嵌套的一个分类。</p>
 <h2 id="如何给文章添加标签"><a href="#如何给文章添加标签" class="headerlink" title="如何给文章添加标签"></a>如何给文章添加标签</h2><p>添加标签的方法与添加分类类似，前面创建”标签“选项的内容也没有叙述，可以参考最后的<a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">参考链接</a>。</p>
 <p>给文章添加标签只需要在文章中添加”tag”属性，下面为添加标签的例子：</p>
-<pre><code>---
+<pre><code class="markdown">---
 title: jQuery对表单的操作及更多应用
 date: 2017-05-26 12:12:57
 categories: 
@@ -178,7 +182,8 @@ tags:
 - jQuery
 - 表格
 - 表单验证
----</code></pre><p><strong>标签没有顺序性和层次性</strong>，即写多个标签是可以并列的，不会出现嵌套。</p>
+---</code></pre>
+<p><strong>标签没有顺序性和层次性</strong>，即写多个标签是可以并列的，不会出现嵌套。</p>
 <h2 id="其他内容"><a href="#其他内容" class="headerlink" title="其他内容"></a>其他内容</h2><ul>
 <li>在<strong>scaffolds</strong>目录下，是新建页面的模板，执行新建命令时，是根据这里的模板页来完成的，所以可以在这里根据你自己的需求添加一些默认值。比如我们可以打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行<code>hexo new 文章名</code>命令生成的文件，页面里就有<strong>categories:</strong>项了。</li>
 </ul>
