@@ -5,12 +5,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Hello World - C0ngvv</title>
+    <title>hexo如何发布文章到博客上 - C0ngvv</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="TriDiamond Obsidian,"> 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any pr,"> 
+    <meta name="description" content="hexo如何发布文章到个人博客上
+概述
+探究利用hexo如何发布一篇文章。
+博客搭建方式：github+hexo
+
+发布文章大致流程1.在source下的_posts中创建md文件，即文章内容。
+2,"> 
     <meta name="author" content="C0ngvv"> 
     <link rel="alternative" href="atom.xml" title="C0ngvv" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -57,7 +63,7 @@
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://yoursite.com">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">Hello World</h3>
+        <h3 class="subtitle">hexo如何发布文章到博客上</h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -90,22 +96,22 @@
                 <a href="/categories/hexo"><b>「
                     </b>HEXO<b> 」</b></a>
                 
-                三月 19, 2020
+                九月 07, 2020
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2020/03/19/hello-world/" title="Hello World" class="">Hello World</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/09/07/hexo%E5%A6%82%E4%BD%95%E5%8F%91%E5%B8%83%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/" title="hexo如何发布文章到博客上" class="">hexo如何发布文章到博客上</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    1.8k
+                    3.1k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    2 mins.
+                    3 mins.
                 </span>
                 
                 
@@ -137,15 +143,53 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h1 id="hexo如何发布文章到个人博客上"><a href="#hexo如何发布文章到个人博客上" class="headerlink" title="hexo如何发布文章到个人博客上"></a>hexo如何发布文章到个人博客上</h1><blockquote>
+<p><strong>概述</strong></p>
+<p>探究利用hexo如何发布一篇文章。</p>
+<p>博客搭建方式：github+hexo</p>
+</blockquote>
+<h2 id="发布文章大致流程"><a href="#发布文章大致流程" class="headerlink" title="发布文章大致流程"></a>发布文章大致流程</h2><p>1.在source下的_posts中创建md文件，即文章内容。</p>
+<p>2.在博客站点下右箭，选择Git Bash Here，输入命令 <code>hexo g</code>(<code>hexo generate</code>)  生成静态文件。</p>
+<p>3.可以输入<code>hexo s</code>（<code>hexo server</code>）进行本地预览，地址为 *<em>localhost:4000 *</em> 。</p>
+<p>4.没有问题后，输入命令<code>hexo d</code> （<code>hexo display</code>），将本地文件发布到github仓库上。</p>
+<h2 id="如何新建一篇文章"><a href="#如何新建一篇文章" class="headerlink" title="如何新建一篇文章"></a>如何新建一篇文章</h2><p>hexo新建一篇文章的命令为</p>
+<pre><code>hexo new [layout] &lt;title&gt;</code></pre><p>如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，需要使用引号括起来。例如：</p>
+<pre><code></code></pre><h2 id="新建文章中的-是干什么的"><a href="#新建文章中的-是干什么的" class="headerlink" title="新建文章中的---是干什么的"></a>新建文章中的<code>---</code>是干什么的</h2><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<pre><code>---
+title: Hello World
+date: 2013/7/13 20:46:25
+---</code></pre><p>为文章添加分类和标签即是在此区域添加。</p>
+<h2 id="如何给文章添加分类"><a href="#如何给文章添加分类" class="headerlink" title="如何给文章添加分类"></a>如何给文章添加分类</h2><p>前面可能部分需要自己手动添加创建“分类”选项，可参考最后的<a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">参考链接</a>，这里没有叙述。</p>
+<p>若想给文章添加分类只需给文章添加“categories”属性即可，如下面的例子：</p>
+<pre><code>---
+title: Hexo 添加分类及标签
+date: 2017-05-26 12:12:57
+categories: Hexo
+---</code></pre><p>添加好分类后，点击博客中每个分类就可以看到该分类下的所有文章（即包含categories: xxx的所有文章）。</p>
+<p>注意事项：<strong>分类具有顺序性和层次性</strong>，hexo一篇文章只能属于一个分类，如在”- web前端“下面添加”-xxx“不会产生并列的两个分类，而是会嵌套的一个分类。</p>
+<h2 id="如何给文章添加标签"><a href="#如何给文章添加标签" class="headerlink" title="如何给文章添加标签"></a>如何给文章添加标签</h2><p>添加标签的方法与添加分类类似，前面创建”标签“选项的内容也没有叙述，可以参考最后的<a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">参考链接</a>。</p>
+<p>给文章添加标签只需要在文章中添加”tag”属性，下面为添加标签的例子：</p>
+<pre><code>---
+title: jQuery对表单的操作及更多应用
+date: 2017-05-26 12:12:57
+categories: 
+- web前端
+tags:
+- jQuery
+- 表格
+- 表单验证
+---</code></pre><p><strong>标签没有顺序性和层次性</strong>，即写多个标签是可以并列的，不会出现嵌套。</p>
+<h2 id="其他内容"><a href="#其他内容" class="headerlink" title="其他内容"></a>其他内容</h2><ul>
+<li>在<strong>scaffolds</strong>目录下，是新建页面的模板，执行新建命令时，是根据这里的模板页来完成的，所以可以在这里根据你自己的需求添加一些默认值。比如我们可以打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行<code>hexo new 文章名</code>命令生成的文件，页面里就有<strong>categories:</strong>项了。</li>
+</ul>
+<h2 id="其他参考链接"><a href="#其他参考链接" class="headerlink" title="其他参考链接"></a>其他参考链接</h2><ul>
+<li><p><a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">Hexo使用攻略-添加分类及标签</a></p>
+</li>
+<li><p><a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">官方hexo指令介绍</a></p>
+</li>
+<li><p><a href="https://hexo.io/zh-cn/docs/front-matter" target="_blank" rel="noopener">官方Front-matter介绍</a></p>
+</li>
+</ul>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -204,7 +248,7 @@
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#hexo如何发布文章到个人博客上"><span class="toc-number">1.</span> <span class="toc-text">hexo如何发布文章到个人博客上</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#发布文章大致流程"><span class="toc-number">1.1.</span> <span class="toc-text">发布文章大致流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何新建一篇文章"><span class="toc-number">1.2.</span> <span class="toc-text">如何新建一篇文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建文章中的-是干什么的"><span class="toc-number">1.3.</span> <span class="toc-text">新建文章中的---是干什么的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何给文章添加分类"><span class="toc-number">1.4.</span> <span class="toc-text">如何给文章添加分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何给文章添加标签"><span class="toc-number">1.5.</span> <span class="toc-text">如何给文章添加标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他内容"><span class="toc-number">1.6.</span> <span class="toc-text">其他内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他参考链接"><span class="toc-number">1.7.</span> <span class="toc-text">其他参考链接</span></a></li></ol></li></ol>
                 </div>
             </div>
             
