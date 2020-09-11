@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title>大整数加减法C++代码</title>
+      <link href="/2020/09/11/%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/"/>
+      <url>/2020/09/11/%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="大整数加减法C-代码"><a href="#大整数加减法C-代码" class="headerlink" title="大整数加减法C++代码"></a>大整数加减法C++代码</h1><blockquote><p> 因为写一次这个东西要花点时间，所以粘在这里，下次可以直接站粘过去用。偷个懒，=.= 懒癌患者</p></blockquote><pre><code class="c++">/** * 大整数加法（如99999999999999999+999999999999999) * 字符串用string存储 * 参数s1,s2为得求和的两个大整数 * 返回值为一个string类型字符串，其值为求和结果 */string add(string s1,string s2){    int len1=s1.length();    int len2=s2.length();    string s=&quot;&quot;;    int c=0;    int i=len1-1,j=len2-1;    while(i&gt;=0 &amp;&amp; j&gt;=0){        int cal=s1[i--]-&#39;0&#39;+s2[j--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    while(i&gt;=0){        int cal=s1[i--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    while(j&gt;=0){        int cal=s2[j--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    if(c){        s=char(c+&#39;0&#39;)+s;    }    return s;}/** * 大整数乘一个一位数（如999999999999999*4） * 大整数、返回值用string,一位数用char存储 * 参数str为大整数，p为一位数（char类型） * 返回值为乘积结果string类型 */string muti(string str,char p){    string s=&quot;&quot;;    int len=str.length();    int c=0;    int i=len-1;    while(i&gt;=0){        int cal=(str[i--]-&#39;0&#39;)*(p-&#39;0&#39;)+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    if(c){        s=char(c+&#39;0&#39;)+s;    }    return s;}/** * 大整数乘法(如99999999999999999*99999999999999999) * 参数为两个非负大整数，类型为string * 返回值为大整数乘积结果，类型为string * 注：需要调用上面的muti(string,string)函数 */string mutiple(string s1,string s2){    if(s1==&quot;0&quot; || s2==&quot;0&quot;){        return &quot;0&quot;;    }    int len=s2.length();    string ans=&quot;&quot;;    string str=&quot;&quot;;    for(int i=len-1;i&gt;=0;i--){        ans=add(ans,muti(s1,s2[i])+str);        str+=&#39;0&#39;;    }    return ans;}/** * 整数转字符串 * 参数为一非负整数，可以修改为long long * 返回值为该整数对应的字符串 * 注：手打没有运行过，应该没问题 */string change(int num){    if(num==0)        return &quot;0&quot;;    string s=&quot;&quot;;    while(num){        s=char(num%10+&#39;0&#39;)+s;        num/=10;    }    return s;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 常用的算法代码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2020暑假算法学习笔记</title>
+      <link href="/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2020暑假算法学习笔记"><a href="#2020暑假算法学习笔记" class="headerlink" title="2020暑假算法学习笔记"></a>2020暑假算法学习笔记</h1><blockquote><p>这是2020年暑假时期学习算法时的一些笔记，里面记录了各种各样的东西</p></blockquote><h4 id="STL优先队列"><a href="#STL优先队列" class="headerlink" title="STL优先队列"></a>STL优先队列</h4><p>priority_queue&lt;Type, Container, Functional&gt;<br>Type 就是数据类型，Container 就是容器类型（Container必须是用数组实现的容器，比如vector,deque等等，但不能用 list。STL里面默认用的是vector），Functional 就是比较的方式。</p><p>当需要用自定义的数据类型时才需要传入这三个参数，使用基本数据类型时，只需要传入数据类型，默认是大顶堆。</p><pre><code class="c++">//升序队列，小顶堆priority_queue &lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; q;//降序队列，大顶堆priority_queue &lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt;q;</code></pre><h4 id="关于lower-bound-和upper-bound-的常见用法"><a href="#关于lower-bound-和upper-bound-的常见用法" class="headerlink" title="关于lower_bound( )和upper_bound( )的常见用法"></a>关于lower_bound( )和upper_bound( )的常见用法</h4><p>lower_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>upper_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>在从大到小的排序数组中，重载lower_bound()和upper_bound()</p><p>lower_bound( begin,end,num,greater<type>() ):从数组的begin位置到end-1位置二分查找第一个小于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>upper_bound( begin,end,num,greater<type>() ):从数组的begin位置到end-1位置二分查找第一个小于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><h4 id="greater-lt-int-gt-和less-lt-int-gt"><a href="#greater-lt-int-gt-和less-lt-int-gt" class="headerlink" title="greater&lt; int &gt;和less&lt; int &gt;"></a>greater&lt; int &gt;和less&lt; int &gt;</h4><pre><code class="c++">template&lt;class _Ty = void&gt;    struct less    {    // functor for operator&lt;    typedef _Ty first_argument_type;    typedef _Ty second_argument_type;    typedef bool result_type;    constexpr bool operator()(const _Ty&amp; _Left, const _Ty&amp; _Right) const        {    // apply operator&lt; to operands        return (_Left &lt; _Right);        }    };</code></pre><pre><code class="c++">template&lt;class _Ty = void&gt;    struct greater    {    // functor for operator&gt;    typedef _Ty first_argument_type;    typedef _Ty second_argument_type;    typedef bool result_type;    constexpr bool operator()(const _Ty&amp; _Left, const _Ty&amp; _Right) const        {    // apply operator&gt; to operands        return (_Left &gt; _Right);        }    };</code></pre><h4 id="Dilworth定理"><a href="#Dilworth定理" class="headerlink" title="Dilworth定理"></a>Dilworth定理</h4><p><strong>偏序集上最小链划分中链的数量等于其反链长度的最大值。</strong></p><h5 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h5><p>设R是集合<em>A</em>上的一个二元关系，若R（如≤）满足：</p><p>Ⅰ 自反性：对任意<em>x</em>∈<em>A</em>，有<em>x</em>R<em>x</em>；</p><p>Ⅱ 反对称性（即反对称关系）：对任意<em>x</em>,<em>y</em>∈<em>A</em>，若<em>x</em>R<em>y</em>，且<em>y</em>R<em>x</em>，则<em>x</em>=<em>y</em>；</p><p>Ⅲ 传递性：对任意<em>x</em>, <em>y</em>,<em>z</em>∈<em>A</em>，若<em>x</em>R<em>y</em>，且<em>y</em>R<em>z</em>，则<em>x</em>R<em>z</em>。</p><p>则称R为<em>A</em>上的偏序关系，通常记作≼。</p><h5 id="全序集"><a href="#全序集" class="headerlink" title="全序集"></a>全序集</h5><p>设$\leq$为非空集合A上的一个偏序关系，若对于集合∀a,b∈B，都有a≤b或b≤a（即元素两两可比），就称(B,≤)为一个全序集。</p><h5 id="反链"><a href="#反链" class="headerlink" title="反链"></a>反链</h5><p>若偏序集(B,≤)中的元素两两不可比，则称B为反链。</p><h4 id="SPFA伪代码"><a href="#SPFA伪代码" class="headerlink" title="SPFA伪代码"></a>SPFA伪代码</h4><pre><code class="c++"> procedure Shortest-Path-Faster-Algorithm(G, s)  1    for each vertex v ≠ s in V(G)  2        d(v) := ∞  3    d(s) := 0  4    offer s into Q  5    while Q is not empty  6        u := poll Q  7        for each edge (u, v) in E(G)  8            if d(u) + w(u, v) &lt; d(v) then  9                d(v) := d(u) + w(u, v) 10                if v is not in Q then 11                    offer v into Q</code></pre><h4 id="快读"><a href="#快读" class="headerlink" title="快读"></a>快读</h4><h5 id="int-快读"><a href="#int-快读" class="headerlink" title="int 快读"></a>int 快读</h5><pre><code>inline int readi(){    char ch=getchar();    int s=0,w=1;    while(ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;){        if(ch==&#39;-&#39;) w=-1;        ch=getchar();    }    while(ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;){        s=s*10+ch-&#39;0&#39;;    //s=(s&lt;&lt;3)+(s&lt;&lt;1)+(ch^48);        ch=getchar();    }    return s*w;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>20200910日常记录</title>
       <link href="/2020/09/10/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-10/"/>
       <url>/2020/09/10/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-10/</url>
