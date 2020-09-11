@@ -4,25 +4,19 @@
   
     
     <entry>
-      <title>大整数加减法C++代码</title>
-      <link href="/2020/09/11/%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/"/>
-      <url>/2020/09/11/%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/</url>
+      <title>20200911日常记录</title>
+      <link href="/2020/09/11/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-11/"/>
+      <url>/2020/09/11/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-11/</url>
       
-        <content type="html"><![CDATA[<h1 id="大整数加减法C-代码"><a href="#大整数加减法C-代码" class="headerlink" title="大整数加减法C++代码"></a>大整数加减法C++代码</h1><blockquote><p> 因为写一次这个东西要花点时间，所以粘在这里，下次可以直接站粘过去用。偷个懒，=.= 懒癌患者</p></blockquote><pre><code class="c++">/** * 大整数加法（如99999999999999999+999999999999999) * 字符串用string存储 * 参数s1,s2为得求和的两个大整数 * 返回值为一个string类型字符串，其值为求和结果 */string add(string s1,string s2){    int len1=s1.length();    int len2=s2.length();    string s=&quot;&quot;;    int c=0;    int i=len1-1,j=len2-1;    while(i&gt;=0 &amp;&amp; j&gt;=0){        int cal=s1[i--]-&#39;0&#39;+s2[j--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    while(i&gt;=0){        int cal=s1[i--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    while(j&gt;=0){        int cal=s2[j--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    if(c){        s=char(c+&#39;0&#39;)+s;    }    return s;}/** * 大整数乘一个一位数（如999999999999999*4） * 大整数、返回值用string,一位数用char存储 * 参数str为大整数，p为一位数（char类型） * 返回值为乘积结果string类型 */string muti(string str,char p){    string s=&quot;&quot;;    int len=str.length();    int c=0;    int i=len-1;    while(i&gt;=0){        int cal=(str[i--]-&#39;0&#39;)*(p-&#39;0&#39;)+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    if(c){        s=char(c+&#39;0&#39;)+s;    }    return s;}/** * 大整数乘法(如99999999999999999*99999999999999999) * 参数为两个非负大整数，类型为string * 返回值为大整数乘积结果，类型为string * 注：需要调用上面的muti(string,string)函数 */string mutiple(string s1,string s2){    if(s1==&quot;0&quot; || s2==&quot;0&quot;){        return &quot;0&quot;;    }    int len=s2.length();    string ans=&quot;&quot;;    string str=&quot;&quot;;    for(int i=len-1;i&gt;=0;i--){        ans=add(ans,muti(s1,s2[i])+str);        str+=&#39;0&#39;;    }    return ans;}/** * 整数转字符串 * 参数为一非负整数，可以修改为long long * 返回值为该整数对应的字符串 * 注：手打没有运行过，应该没问题 */string change(int num){    if(num==0)        return &quot;0&quot;;    string s=&quot;&quot;;    while(num){        s=char(num%10+&#39;0&#39;)+s;        num/=10;    }    return s;}</code></pre>]]></content>
+        <content type="html"><![CDATA[<h1 id="2020-9-11的日常记录"><a href="#2020-9-11的日常记录" class="headerlink" title="2020/9/11的日常记录"></a>2020/9/11的日常记录</h1><h2 id="日程记录"><a href="#日程记录" class="headerlink" title="日程记录"></a>日程记录</h2><p>六点半醒了，然后起来，吃饭，上课</p><p>九点半，上课回来做算法题，一个小时做了两道题</p><p>十一点多吃饭，看脱口秀</p><p>十二点？？，后来是阅读。</p><p>一点睡，睡到两点半，然后起来阅读，看了一个小时。差不多三四点，然后看软考，也不到一个小时吧，五点吃饭。</p><p>六点半看算法书，看了一个小时。</p><p>七点半跑步，八点十分洗澡，洗衣服。</p><p>八点四十多背单词，四五十分钟，然后看了一点点书。</p><p>现在是九点四十，写日记。</p><p>后面十点可能是回信。然后读读书睡觉。</p><h2 id="今日反思"><a href="#今日反思" class="headerlink" title="今日反思"></a>今日反思</h2><p>今天也做的还不错，暂时没有太多哪里做的不合理的想法，也可能是我忘记了。</p><h2 id="今日日记"><a href="#今日日记" class="headerlink" title="今日日记"></a>今日日记</h2><p>昨天是教师节，晚上十点我跟我的高中老师打了个电话。一年都没打了，打电话之前还在担心会不会尴尬，我一打过去老师就哒哒哒，跟我说个不停，老师还是这么能说。挺好，跟我说了很多东西，考研了、学习了、大学生活了，还问我钱够不够花，不够的话跟他说。这么久了还是让人觉得很亲切。</p><p>昨天晚上十一点我还跟我家里面视频了一下，视频了七十多分钟。挺好</p><p>昨天晚上觉得很累，所以昨天晚上+今天早上适当放空了一下，早上的时候什么都没做，直到上课回来。今天又来信了，我得会要回信。</p><p>今天其实挺满意的，做了很多东西，上午做了算法题，中午下午的时候阅读了一个多小时，然后也做了软考题，晚上的时候看了一个多小时算法书，然后跑步，背单词，再然后就是写日记，回信了。</p><p>对了，今天来的信让我想到了很多东西，然后又忽然想输出点什么，又想起了写微信公众号的想法，我在想能不能每周写一篇文章放上去。再一个想法就是看有没有机会每天试着用英语表达自己的想法，比如用英语聊天，或者用英语输出自己的想法。这是今天刚萌生的两个想法。</p>]]></content>
       
       
       <categories>
           
-          <category> 算法 </category>
+          <category> 日常记录与反思 </category>
           
       </categories>
       
-      
-        <tags>
-            
-            <tag> 常用的算法代码 </tag>
-            
-        </tags>
       
     </entry>
     
@@ -42,6 +36,31 @@
           
       </categories>
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>大整数加减法C++代码</title>
+      <link href="/2020/09/11/%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/"/>
+      <url>/2020/09/11/%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="大整数加减法C-代码"><a href="#大整数加减法C-代码" class="headerlink" title="大整数加减法C++代码"></a>大整数加减法C++代码</h1><blockquote><p> 因为写一次这个东西要花点时间，所以粘在这里，下次可以直接站粘过去用。偷个懒，=.= 懒癌患者</p></blockquote><pre><code class="c++">/** * 大整数加法（如99999999999999999+999999999999999) * 字符串用string存储 * 参数s1,s2为得求和的两个大整数 * 返回值为一个string类型字符串，其值为求和结果 */string add(string s1,string s2){    int len1=s1.length();    int len2=s2.length();    string s=&quot;&quot;;    int c=0;    int i=len1-1,j=len2-1;    while(i&gt;=0 &amp;&amp; j&gt;=0){        int cal=s1[i--]-&#39;0&#39;+s2[j--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    while(i&gt;=0){        int cal=s1[i--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    while(j&gt;=0){        int cal=s2[j--]-&#39;0&#39;+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    if(c){        s=char(c+&#39;0&#39;)+s;    }    return s;}/** * 大整数乘一个一位数（如999999999999999*4） * 大整数、返回值用string,一位数用char存储 * 参数str为大整数，p为一位数（char类型） * 返回值为乘积结果string类型 */string muti(string str,char p){    string s=&quot;&quot;;    int len=str.length();    int c=0;    int i=len-1;    while(i&gt;=0){        int cal=(str[i--]-&#39;0&#39;)*(p-&#39;0&#39;)+c;        c=cal/10;        s=char(cal%10+&#39;0&#39;)+s;    }    if(c){        s=char(c+&#39;0&#39;)+s;    }    return s;}/** * 大整数乘法(如99999999999999999*99999999999999999) * 参数为两个非负大整数，类型为string * 返回值为大整数乘积结果，类型为string * 注：需要调用上面的muti(string,string)函数 */string mutiple(string s1,string s2){    if(s1==&quot;0&quot; || s2==&quot;0&quot;){        return &quot;0&quot;;    }    int len=s2.length();    string ans=&quot;&quot;;    string str=&quot;&quot;;    for(int i=len-1;i&gt;=0;i--){        ans=add(ans,muti(s1,s2[i])+str);        str+=&#39;0&#39;;    }    return ans;}/** * 整数转字符串 * 参数为一非负整数，可以修改为long long * 返回值为该整数对应的字符串 * 注：手打没有运行过，应该没问题 */string change(int num){    if(num==0)        return &quot;0&quot;;    string s=&quot;&quot;;    while(num){        s=char(num%10+&#39;0&#39;)+s;        num/=10;    }    return s;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 常用的算法代码 </tag>
+            
+        </tags>
       
     </entry>
     
