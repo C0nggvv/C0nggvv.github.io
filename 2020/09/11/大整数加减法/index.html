@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        大整数加减法C++代码 | C0ngvv
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.xml"};
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            C0ngvv
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">大整数加减法C++代码</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2020-09-11 10:47:23
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81/">常用的算法代码</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>505 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>2 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="大整数加减法C-代码"><a href="#大整数加减法C-代码" class="headerlink" title="大整数加减法C++代码"></a>大整数加减法C++代码</h1><blockquote>
+<p> 因为写一次这个东西要花点时间，所以粘在这里，下次可以直接站粘过去用。偷个懒，=.= 懒癌患者</p>
+</blockquote>
+<pre><code class="c++">/**
+ * 大整数加法（如99999999999999999+999999999999999)
+ * 字符串用string存储
+ * 参数s1,s2为得求和的两个大整数
+ * 返回值为一个string类型字符串，其值为求和结果
+ */
+string add(string s1,string s2){
+    int len1=s1.length();
+    int len2=s2.length();
+    string s=&quot;&quot;;
+    int c=0;
+    int i=len1-1,j=len2-1;
+    while(i&gt;=0 &amp;&amp; j&gt;=0){
+        int cal=s1[i--]-&#39;0&#39;+s2[j--]-&#39;0&#39;+c;
+        c=cal/10;
+        s=char(cal%10+&#39;0&#39;)+s;
+    }
+    while(i&gt;=0){
+        int cal=s1[i--]-&#39;0&#39;+c;
+        c=cal/10;
+        s=char(cal%10+&#39;0&#39;)+s;
+    }
+    while(j&gt;=0){
+        int cal=s2[j--]-&#39;0&#39;+c;
+        c=cal/10;
+        s=char(cal%10+&#39;0&#39;)+s;
+    }
+    if(c){
+        s=char(c+&#39;0&#39;)+s;
+    }
+    return s;
+}
+
+/**
+ * 大整数乘一个一位数（如999999999999999*4）
+ * 大整数、返回值用string,一位数用char存储
+ * 参数str为大整数，p为一位数（char类型）
+ * 返回值为乘积结果string类型
+ */
+string muti(string str,char p){
+    string s=&quot;&quot;;
+    int len=str.length();
+    int c=0;
+    int i=len-1;
+    while(i&gt;=0){
+        int cal=(str[i--]-&#39;0&#39;)*(p-&#39;0&#39;)+c;
+        c=cal/10;
+        s=char(cal%10+&#39;0&#39;)+s;
+    }
+    if(c){
+        s=char(c+&#39;0&#39;)+s;
+    }
+    return s;
+}
+
+/**
+ * 大整数乘法(如99999999999999999*99999999999999999)
+ * 参数为两个非负大整数，类型为string
+ * 返回值为大整数乘积结果，类型为string
+ * 注：需要调用上面的muti(string,string)函数
+ */
+string mutiple(string s1,string s2){
+    if(s1==&quot;0&quot; || s2==&quot;0&quot;){
+        return &quot;0&quot;;
+    }
+    int len=s2.length();
+    string ans=&quot;&quot;;
+    string str=&quot;&quot;;
+    for(int i=len-1;i&gt;=0;i--){
+        ans=add(ans,muti(s1,s2[i])+str);
+        str+=&#39;0&#39;;
+    }
+    return ans;
+}
+
+/**
+ * 整数转字符串
+ * 参数为一非负整数，可以修改为long long
+ * 返回值为该整数对应的字符串
+ * 注：手打没有运行过，应该没问题
+ */
+string change(int num){
+    if(num==0)
+        return &quot;0&quot;;
+    string s=&quot;&quot;;
+    while(num){
+        s=char(num%10+&#39;0&#39;)+s;
+        num/=10;
+    }
+    return s;
+}</code></pre>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">2020暑假算法学习笔记</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2020/09/10/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-10/"
+                    >
+                        <span class="post-nav-title-item">20200910日常记录</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+</div>
+        </div>
+    </div>
+</div>
+
+    <div class="article-toc-container fade-in-down-animation">
+        <div class="article-toc">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#大整数加减法C-代码"><span class="nav-number">1.</span> <span class="nav-text">大整数加减法C++代码</span></a></li></ol>
+    </div>
+</div>
+        </div>
+    </div>
+
+
+                
+
+            </div>
+
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <span class="scroll-percent">
+                            <i class="fa fa-caret-up"></i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">C0ngvv</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.1</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>

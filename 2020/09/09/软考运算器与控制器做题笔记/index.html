@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        运算器与控制器做题笔记 | C0ngvv
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.xml"};
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            C0ngvv
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">运算器与控制器做题笔记</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2020-09-09 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%A4%87%E6%88%98%E8%BD%AF%E8%80%83/">备战软考</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/">计算机组成与体系结构</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>1.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>5 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="软考运算器与控制器做题笔记"><a href="#软考运算器与控制器做题笔记" class="headerlink" title="软考运算器与控制器做题笔记"></a>软考运算器与控制器做题笔记</h1><blockquote>
+<p> <em>生活不易，猪猪叹息！</em></p>
+</blockquote>
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><p><strong>指令字</strong>（简称指令）即表示一条指令的机器字。</p>
+<p><strong>指令格式</strong>则是指令字用二进制代码表示的结构形式，由<strong>操作码</strong>字段和<strong>地址码</strong>字段组成。</p>
+<p><strong>操作码</strong>字段表征指令的<strong>操作特性与功能</strong>；<strong>地址码</strong>字段通常指定参与操作的<strong>操作数的地址</strong>。</p>
+<p>操作码和地址码都应存入<strong>指令寄存器</strong>。</p>
+<p>计算机执行指令时，从<strong>内存</strong>中取出的一条<strong>指令</strong>经数据总线送往<strong>指令寄存器</strong>中。指令的<strong>操作码</strong>被送到<strong>指令译码器</strong>中译码，<strong>地址码</strong>则送到<strong>地址形成部件</strong>。地址形成部件根据指令特征将地址码形成<strong>有效地址</strong>，送往<strong>主存的地址寄存器</strong>。对于转移指令，要将形成的有效转移地址送往程序计数器中，实现程序的转移。<strong>操作控制器</strong>根据指令译码器对于指令操作码的<strong>译码</strong>，产生出实现指令功能所需要的全部动作的<strong>控制信号</strong>。这些控制信号按照一定的时间顺序发往各个部件，控制各部件的动作。</p>
+<h3 id="程序计数器PC"><a href="#程序计数器PC" class="headerlink" title="程序计数器PC"></a>程序计数器PC</h3><p>程序计数器是用于<strong>存放下一条指令所在单元的地址</strong>的地方。</p>
+<p>可以通过call, jmp 等跳转指令间接改变，可以用Move，push等读出其值，但是不可写。（<strong>可访问</strong>）</p>
+<p>当执行一条指令时，首先需要根据<strong>PC</strong>中存放的<strong>指令地址</strong>，将<strong>指令</strong>由内存取到<strong>指令寄存器</strong>中，此过程称为“取指令”。与此同时，PC中的地址或自动加1或由转移指针给出下一条指令的地址。此后经过分析指令，执行指令。完成第一条指令的执行，而后根据PC取出第二条指令的地址，如此循环，执行每一条指令。</p>
+<h3 id="指令寄存器IR"><a href="#指令寄存器IR" class="headerlink" title="指令寄存器IR"></a>指令寄存器IR</h3><p>指令寄存器，用于暂存当前正在执行的<strong>指令</strong>，<strong>对用户完全透明</strong>。</p>
+<p>当执行一条指令时，先把它从内存取到内存数据寄存器（MDR）中，然后再传送至IR。</p>
+<h3 id="指令译码器"><a href="#指令译码器" class="headerlink" title="指令译码器"></a>指令译码器</h3><p><strong>指令译码器(Instruction Decoder,ID)</strong>是控制器中的主要部件之一。计算机能且只能执行“指令”。指令由操作码和地址码组成。操作码表示要执行的操作性质，即执行什么操作，或做什么；地址码是操作码执行时的操作对象的地址。计算机执行一条指定的指令时，必须首先分析这条指令的操作码是什么，以决定操作的性质和方法，然后才能控制计算机其他各部件协同完成指令表达的功能，这个分析工作由指令译码器来完成。</p>
+<h3 id="MDR与MAR"><a href="#MDR与MAR" class="headerlink" title="MDR与MAR"></a>MDR与MAR</h3><p>计算机中的<strong>存储器数据寄存器(MDR)</strong>，与<strong>存储器地址寄存器(MAR)</strong>帮助完成CPU和主存储器之间的通信。</p>
+<p><strong>MAR</strong>用来保存数据被传输到的位置的地址或者数据来源位置的<strong>地址</strong>。</p>
+<p><strong>MDR</strong>保存要被写入地址单元或者从地址单元读出的<strong>数据</strong>。</p>
+<p>主存与CPU的硬连接有三组连线：地址总线（AB）、数据总线（DB）和控制总线（CB）。把主存看作一个黑盒子，存储器地址寄存器（MAR）和存储器数据寄存器（MDR）是主存和CPU之间的接口。<strong>MAR</strong>可以接收由<strong>程序计数器（PC）</strong>的指令地址或来自运算器的操作数的地址，以确定要访问的单元。<strong>MDR</strong>是向主存写入数据或从主存读出数据的缓冲部件。MAR和MDR从功能上看属于主存，但通常放在CPU内。</p>
+<h3 id="地址寄存器AR"><a href="#地址寄存器AR" class="headerlink" title="地址寄存器AR"></a>地址寄存器AR</h3><p>用来保存<strong>当前CPU所访问的内存单元</strong>的地址。</p>
+<p>由于在内存和CPU之间存在着操作速度上的差别，所以必须使用地址寄存器来保持地址信息，直到内存的读/写操作完成为止 。</p>
+<h3 id="算术逻辑单元ALU"><a href="#算术逻辑单元ALU" class="headerlink" title="算术逻辑单元ALU"></a>算术逻辑单元ALU</h3><p><strong>算术逻辑单元（Arithmetic&amp;logical Unit）</strong>是<strong>中央处理器(CPU)的执行单元</strong>。</p>
+<p>是所有中央处理器的核心组成部分，由”And Gate”（与门） 和”Or Gate”（或门）构成的算术逻辑单元，主要功能是进行二位元的算术运算，如加减乘(不包括整数除法)。</p>
+<h3 id="累加器AC"><a href="#累加器AC" class="headerlink" title="累加器AC"></a>累加器AC</h3><p>累加寄存器（AC）通常简称为<strong>累加器</strong>，它是一个<strong>通用寄存器</strong>。</p>
+<p>其功能是：当运算器的算术逻辑单元(ALU)执行算术或逻辑运算时，为ALU提供一个工作区。累加寄存器暂时存放ALU运算的结果信息。</p>
+<p>在运算器中，累加器是专门存放算术或逻辑运算的一个操作数和运算结果的寄存器。能进行加、减、读出、移位、循环移位和求补等操作，是运算器的主要部分。</p>
+<h3 id="状态寄存器"><a href="#状态寄存器" class="headerlink" title="状态寄存器"></a>状态寄存器</h3><p>状态寄存器又名条件码寄存器，它是计算机系统的核心部件——运算器的一部分。</p>
+<p>状态寄存器用来存放两类信息：一类是体现当前指令执行结果的各种状态信息（条件码），如有无进位（CF位）、有无溢出（OV位）、结果正负（SF位）、结果是否为零（ZF位）、奇偶标志位（P位）等；另一类是存放控制信息（PSW:程序状态字寄存器），如允许中断(IF位)、跟踪标志（TF位）等。</p>
+<h3 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h3><p>通用寄存器可用于传送和暂存数据，也可参与算术逻辑运算，并保存运算结果。除此之外，它们还各自具有一些特殊功能。</p>
+<h3 id="运算器"><a href="#运算器" class="headerlink" title="运算器"></a>运算器</h3><ol>
+<li><p>算术逻辑单元ALU</p>
+</li>
+<li><p>累加寄存器</p>
+</li>
+<li><p>数据缓冲寄存器</p>
+</li>
+<li><p>状态条件寄存器</p>
+</li>
+</ol>
+<h3 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h3><ol>
+<li>程序计数器PC</li>
+<li>指令寄存器IR</li>
+<li>指令译码器</li>
+<li>时序部件</li>
+<li>操作控制器</li>
+</ol>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2020/09/09/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-9/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">20200909日常记录</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2020/09/08/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-8/"
+                    >
+                        <span class="post-nav-title-item">20200908日常记录</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+</div>
+        </div>
+    </div>
+</div>
+
+    <div class="article-toc-container fade-in-down-animation">
+        <div class="article-toc">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软考运算器与控制器做题笔记"><span class="nav-number">1.</span> <span class="nav-text">软考运算器与控制器做题笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令"><span class="nav-number">1.0.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器PC"><span class="nav-number">1.0.2.</span> <span class="nav-text">程序计数器PC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令寄存器IR"><span class="nav-number">1.0.3.</span> <span class="nav-text">指令寄存器IR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令译码器"><span class="nav-number">1.0.4.</span> <span class="nav-text">指令译码器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MDR与MAR"><span class="nav-number">1.0.5.</span> <span class="nav-text">MDR与MAR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地址寄存器AR"><span class="nav-number">1.0.6.</span> <span class="nav-text">地址寄存器AR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算术逻辑单元ALU"><span class="nav-number">1.0.7.</span> <span class="nav-text">算术逻辑单元ALU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#累加器AC"><span class="nav-number">1.0.8.</span> <span class="nav-text">累加器AC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态寄存器"><span class="nav-number">1.0.9.</span> <span class="nav-text">状态寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用寄存器"><span class="nav-number">1.0.10.</span> <span class="nav-text">通用寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算器"><span class="nav-number">1.0.11.</span> <span class="nav-text">运算器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器"><span class="nav-number">1.0.12.</span> <span class="nav-text">控制器</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </div>
+    </div>
+
+
+                
+
+            </div>
+
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <span class="scroll-percent">
+                            <i class="fa fa-caret-up"></i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">C0ngvv</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.1</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>
