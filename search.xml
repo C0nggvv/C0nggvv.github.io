@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>ARP攻击与流量监听</title>
+      <link href="/2020/09/17/2020%E6%9A%91%E6%9C%9F%E5%AE%9E%E8%AE%AD%E7%AC%94%E8%AE%B00917_ARP%E6%94%BB%E5%87%BB/"/>
+      <url>/2020/09/17/2020%E6%9A%91%E6%9C%9F%E5%AE%9E%E8%AE%AD%E7%AC%94%E8%AE%B00917_ARP%E6%94%BB%E5%87%BB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h2><p>ARP（Address Resolution Protocol）地址解析协议，目的是实现IP地址到MAC地址的转换。</p><h3 id="ARP工作原理"><a href="#ARP工作原理" class="headerlink" title="ARP工作原理"></a>ARP工作原理</h3><p><img src="https://img-blog.csdnimg.cn/20200428171315461.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l0eDIwMTQyMTQwODE=,size_16,color_FFFFFF,t_70" alt="img"></p><p>每台计算机会维护一个<strong>ARP缓存表</strong>，记录着IP与MAC的映射关系。在windows系统dos命令为<code>arp -a</code>。arp表为：</p><table><thead><tr><th>Internet 地址</th><th>物理地址</th><th>类型</th></tr></thead><tbody><tr><td>xxx.xxx.xxx.xxx</td><td>xx-xx-xx-xx-xx-xx</td><td>动态|静态</td></tr></tbody></table><p>交换机维护一个<strong>mac地址表</strong>，记录着接口与mac的对应关系。</p><p>初始时，表中没有记录，PC1想与PC2通信，只知道其IP，但不知道其MAC地址，然而下层传输数据包需要得知目的主机的mac地址。PC1获取PC2 mac地址的流程如下（或者说PC1获取IP地址为ip的主机的mac地址的流程）：</p><ol><li>PC1为获得IP地址为ip的主机(PC2)的mac地址，<strong>PC1</strong>在局域网内进行<strong>广播</strong>，数据包种包括<strong>PC1的IP地址、mac地址、目的主机(PC2)的IP地址</strong>。</li><li><strong>交换机</strong>收到此广播后，将PC1的<strong>mac地址</strong>及其连接的交换机<strong>接口</strong>记录在<strong>mac地址表</strong>中。然后将数据包广播转发到其他接口。</li><li><strong>每台主机</strong>接受到广播后，查询广播中的目的ip和自己主机的ip是否一致，若不一致则抛弃，如PC3和PC4。</li><li>若目的ip和自己主机的ip一致，即PC2，则将对方(<strong>PC1</strong>)的<strong>IP和mac的映射关系</strong>记录在自己的<strong>ARP缓存</strong>中，然后<strong>单播</strong>将自己的mac地址<strong>回复</strong>给PC1(已知PC1mac地址)。</li><li><strong>交换机</strong>收到PC2的数据包，再将<strong>PC2</strong>的<strong>mac和接口关系记录</strong>在<strong>mac地址表</strong>中，然后在<strong>mac地址表</strong>中查询到与PC1的连接的接口号（PC1广播时记录过）进行<strong>转发</strong>。</li><li><strong>PC1</strong>收到来自<strong>PC2</strong>的数据包，将<strong>PC2</strong>的<strong>IP和mac地址的映射关系</strong>记录在自己的<strong>ARP缓存</strong>中。</li></ol><h3 id="ARP数据包信息"><a href="#ARP数据包信息" class="headerlink" title="ARP数据包信息"></a>ARP数据包信息</h3><table><thead><tr><th>Hardware type</th><th>硬件类型，标识链路层协议</th></tr></thead><tbody><tr><td>Protocol type</td><td>协议类型，标识网络层协议</td></tr><tr><td>Hardware size</td><td>硬件地址大小，标识MAC地址长度，这里是6个字节（48bit）</td></tr><tr><td>Protocol size</td><td>协议地址大小，标识IP地址长度，这里是4个字节（32bit）</td></tr><tr><td>Opcode</td><td>操作代码，标识ARP数据包类型，1表示请求，2表示回应</td></tr><tr><td>Sender MAC address</td><td>发送者MAC</td></tr><tr><td>Sender IP address</td><td>发送者IP</td></tr><tr><td>Target MAC address</td><td>目标MAC，此处全0表示在请求</td></tr><tr><td>Target IP address</td><td>目标IP</td></tr></tbody></table><h3 id="ARP欺骗"><a href="#ARP欺骗" class="headerlink" title="ARP欺骗"></a>ARP欺骗</h3><p>在PC1广播询问PC2的mac地址时，本该接收到数据包因ip地址与自身不匹配而丢弃的的PC3，伪造成PC2，向PC1回复消息，则PC1会收到两个数据包：一个是真的，一个是假的。PC1会认为最新的为真的（后到的）并记录在ARP缓存表中。这样PC3可以不断的发送虚假数据包而使其后到达覆盖掉真实的数据包。这样PC1会建立IP2-MAC3这样一条ARP缓存条目，以后当PC1给PC2发送信息的时候，通过查询ARP缓存，将数据发给PC3。</p><p>简要流程如下：</p><ol><li>PC1广播询问PC2的mac地址</li><li>PC2回复自己的mac地址；PC3伪造自己为PC2不断发送数据包给PC1</li><li>PC1以后来的数据包（PC3）为标准修改自己的ARP缓存，于是建立错误的条目：IP2-MAC3</li><li>PC1给PC2发送消息，查询错误的ARP缓存，错误的发送给PC3（即数据被PC3截获）</li></ol><h2 id="配置端口镜像"><a href="#配置端口镜像" class="headerlink" title="配置端口镜像"></a>配置端口镜像</h2><p>配置端口镜像将其他端口的流量镜像复制到指定的端口，进而指定端口连接的计算机可以抓取到其他链路的数据流量。</p><h3 id="华为eNSP交换机配置端口镜像命令"><a href="#华为eNSP交换机配置端口镜像命令" class="headerlink" title="华为eNSP交换机配置端口镜像命令"></a>华为eNSP交换机配置端口镜像命令</h3><pre><code>observe-port 1 interface Ethernet0/0/3    //观察口，设置e0/0/3口为监测端口,1是组的名字interface Ethernet0/0/1                    //选择镜像口，port-mirroring to observe-port 1 both[| outbound | inbound]//将镜像口e0/0/1流量镜像到e0/0/3</code></pre><p>注：在eNSP中交换机命令可以配置，但抓不到包（软件有bug），下面的路由器可以抓到包。</p><h3 id="华为eNSP路由器配置端口镜像命令"><a href="#华为eNSP路由器配置端口镜像命令" class="headerlink" title="华为eNSP路由器配置端口镜像命令"></a>华为eNSP路由器配置端口镜像命令</h3><pre><code>observe-port interface Ethernet0/0/3    //观察口，设置e0/0/3口为监测端口,1是组的名字interface Ethernet0/0/1                    //选择镜像口，port-mirroring to observe-port both[| outbound | inbound]</code></pre><blockquote><p>天地不仁，以万物为刍狗。</p><p>圣人不仁，以百姓为刍狗。</p><p>天地之间，其犹橐龠乎？</p><p>虚而不屈，动而欲出。</p><p>多言数穷，不如守中。</p><p>​    –《道德经》第五章 多言数穷，不如守中</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 2020暑期实训笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ARP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>20200913日常记录</title>
       <link href="/2020/09/13/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-13/"/>
       <url>/2020/09/13/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-13/</url>
