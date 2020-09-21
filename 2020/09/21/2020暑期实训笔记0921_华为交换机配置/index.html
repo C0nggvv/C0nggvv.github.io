@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        eNSP基本配置 | C0ngvv
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.xml"};
+  </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            C0ngvv
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        首页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/categories"
+                    >
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/tags"
+                    >
+                        标签
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">eNSP基本配置</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2020-09-21 00:00:00
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/2020%E6%9A%91%E6%9C%9F%E5%AE%9E%E8%AE%AD%E7%AC%94%E8%AE%B0/">2020暑期实训笔记</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/eNSP/">eNSP</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>861 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>3 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="eNSP配置"><a href="#eNSP配置" class="headerlink" title="eNSP配置"></a>eNSP配置</h1><h2 id="交换机基本配置"><a href="#交换机基本配置" class="headerlink" title="交换机基本配置"></a>交换机基本配置</h2><p>快捷键</p>
+<p>按<code>?</code>能获得帮助信息，按<code>TAB</code>键可自动补全</p>
+<p>配置视图</p>
+<pre><code>&lt;Huawei&gt;         //用户模式 
+&lt;Huawei&gt; system-view //切进系统视图  
+[Huawei]         //系统视图 
+[Huawei] interface GigabitEthernet 0/0/1 //切进接口视图 
+[Huawei-GigabitEthernet0/0/1] //接口视图</code></pre><p>退回前一个视图：<code>quit</code></p>
+<p>快速返回用户视图：<code>return</code> 或 <code>Ctrl+Z</code></p>
+<p>查看版本：<code>display version</code></p>
+<p>配置设备名：<code>sysname name1</code></p>
+<p>查看当前配置：<code>display current-configuration</code></p>
+<p>保存当前配置：<code>save</code></p>
+<p>启用接口：<code>shutdown</code></p>
+<p>关闭接口：<code>undo shutdown</code></p>
+<p>关闭终端显示功能：<code>undo terminal monitor</code></p>
+<p>设置终端密码</p>
+<pre><code>[lsw1] user-interface console 0 
+[lsw1-ui-console0]authentication-mode password   //启用密码认证 
+[lsw1-ui-console0] set authentication password cipher Taren1  
+//设置终端登录密码为 Taren1</code></pre><p>为vlan1接口配置IP地址</p>
+<pre><code>/**
+ * 交换机的接口用来连计算机网卡，默认不能配置IP地址
+ * 为方便管理，需要使用虚接口vlan1
+ */
+[Switch1]interface vlan1 //进虚接口vlan1配置 
+[Switch1-Vlanif1]ip address 192.168.1.100 24 //设置IP地址 </code></pre><p>远程管理交换机</p>
+<pre><code>[Switch1]user-interface vty 0 4  //进远程登录配置视图 
+[Switch -ui-vty0-4] user privilege level 3  //设置用户登录 
+[Switch1-ui-vty0-4]authentication-mode aaa  //启用AAA认证</code></pre><pre><code>[Switch1] aaa  //进AAA配置视图 
+[Switch1-aaa] local-user ntdadm password cipher Taren1  //添加用户ntdadm 
+[Switch1-aaa] local-user ntdadm service-type telnet //选择控制方式telnet
+</code></pre><p>远程连接：<code>telnet IP地址</code></p>
+<h2 id="路由器基本配置"><a href="#路由器基本配置" class="headerlink" title="路由器基本配置"></a>路由器基本配置</h2><p>配置视图</p>
+<pre><code>&lt;Huawei&gt;         //用户视图 
+&lt;Huawei&gt;system-view   
+[Huawei]         //系统视图 
+[Huawei]interface GigabitEthernet 0/0/0 
+[Huawei-GigabitEthernet0/0/0]      //接口视图</code></pre><p>配置路由器主机名：<code>sysname name1</code></p>
+<p>配置终端密码</p>
+<pre><code>&lt;Router&gt; system-view 
+[Router-ui-console0]authentication-mode password
+输入密码内容  //配置密码</code></pre><p>配置接口IP地址：<code>ip address IP地址 掩码位数</code></p>
+<p>配置静态路由：<code>ip route-static 目的网段 子网掩码 下一条IP地址</code></p>
+<p>查看路由表：<code>display ip routing-table</code></p>
+<p>远程管理路由器</p>
+<pre><code>设备管理AAA身份认证模式
+[Router1] user-interface vty 0 4 //进入远程登录配置视图 
+[Router1 -ui-vty0-4] user privilege level 3        //设置用户登录 
+[Router1 -ui-vty0-4] authentication-mode aaa     //启用AAA认证</code></pre><pre><code>/**
+ * 配置AAA认证细节
+ * 添加用户ntdadm，密码设为 Taren1
+ * 选择控制方式 telnet 
+ */
+[Router1] aaa      //进AAA配置视图 
+[Router1 -aaa] local-user ntdadm password cipher Taren1 //添加用户ntdadm 
+[Router1 -aaa] local-user ntdadm service-type telnet     //选择控制方式telnet</code></pre><p>远程登录路由器：<code>telnet IP地址</code></p>
+<h2 id="防火墙终端命令配置"><a href="#防火墙终端命令配置" class="headerlink" title="防火墙终端命令配置"></a>防火墙终端命令配置</h2><p>查看接口：<code>display ip interface brief</code></p>
+<p>配置接口</p>
+<pre><code>interface GigabitEthernet1/0/1              //选择接口
+  ip address 192.168.1.254 255.255.255.0      //配置IP地址
+  service-manage ping permit                 //允许Ping服务
+interface GigabitEthernet1/0/2  
+  ip address 200.1.1.254 255.255.255.0 
+firewall zone trust                          //添加trust接口
+  add interface GigabitEthernet1/0/1 
+firewall zone untrust                          //添加untrust接口
+  add interface GigabitEthernet1/0/2</code></pre><p>配置安全策略</p>
+<pre><code>security-policy  
+  rule name out    
+    source-zone trust    
+    destination-zone untrust    
+    action permit</code></pre><p>配置默认路由：<code>ip route-static 目的IP 子网掩码 下一条IP</code></p>
+<blockquote>
+<p>天下有道，却走马以粪。<br>天下无道，戎马生于郊。<br>罪莫大于可欲，祸莫大于不知足，咎莫大于欲得。<br>故知足之足，常足矣。</p>
+<p>​    –《道德经》第四十六章 罪于纵欲，知足常足</p>
+<p>【译文】</p>
+<p>天下有道，战马就回到田地耕田。<br>天下无道，战马在战场上就生下马驹。<br>罪莫大于放纵欲望，祸莫大于不知足，错莫大于贪婪。<br>所以知足才会有常久的富足。</p>
+</blockquote>
+
+        </div>
+
+        <div class="article-nav">
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2020/09/17/2020%E6%9A%91%E6%9C%9F%E5%AE%9E%E8%AE%AD%E7%AC%94%E8%AE%B00917_ARP%E6%94%BB%E5%87%BB/"
+                    >
+                        <span class="post-nav-title-item">ARP攻击与流量监听</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+</div>
+        </div>
+    </div>
+</div>
+
+    <div class="article-toc-container fade-in-down-animation">
+        <div class="article-toc">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#eNSP配置"><span class="nav-number">1.</span> <span class="nav-text">eNSP配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#交换机基本配置"><span class="nav-number">1.1.</span> <span class="nav-text">交换机基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由器基本配置"><span class="nav-number">1.2.</span> <span class="nav-text">路由器基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙终端命令配置"><span class="nav-number">1.3.</span> <span class="nav-text">防火墙终端命令配置</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </div>
+    </div>
+
+
+                
+
+            </div>
+
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <span class="scroll-percent">
+                            <i class="fa fa-caret-up"></i>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">C0ngvv</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.1</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>
