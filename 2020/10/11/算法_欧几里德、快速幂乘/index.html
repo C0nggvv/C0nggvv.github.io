@@ -155,7 +155,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>472 字</span>
+        <i class="fa fa-book"></i> <span>471 字</span>
         </span>
     
     
@@ -171,12 +171,12 @@
             <h1 id="最大公约数、扩展欧几里德、快速乘、快速幂"><a href="#最大公约数、扩展欧几里德、快速乘、快速幂" class="headerlink" title="最大公约数、扩展欧几里德、快速乘、快速幂"></a>最大公约数、扩展欧几里德、快速乘、快速幂</h1><blockquote>
 <p> 因为写一次这个东西要花点时间，所以粘在这里，下次可以直接站粘过去用。偷个懒，=.= 懒癌患者</p>
 </blockquote>
-<h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><p>求两个数最大公约数，复杂度$O(log max(a,b))$</p>
+<h2 id="最大公约数"><a href="#最大公约数" class="headerlink" title="最大公约数"></a>最大公约数</h2><p>求两个数最大公约数，复杂度O(log max(a,b))</p>
 <pre><code class="C++">typedef long long ll;
 ll gcd(ll a,ll b){
     return b==0?a:gcd(b,a%b);
 }</code></pre>
-<h2 id="扩展欧几里德算法"><a href="#扩展欧几里德算法" class="headerlink" title="扩展欧几里德算法"></a>扩展欧几里德算法</h2><p>若想计算$ax+by=1(a,b已知)$的解，则可以使用扩展欧几里德算法，复杂度同 gcd，即$O(log max(a,b))$</p>
+<h2 id="扩展欧几里德算法"><a href="#扩展欧几里德算法" class="headerlink" title="扩展欧几里德算法"></a>扩展欧几里德算法</h2><p>若想计算ax+by=1(a,b已知)​的解，则可以使用扩展欧几里德算法，复杂度同 gcd，即​O(log max(a,b))​</p>
 <pre><code class="C++">typedef long long ll;
 ll ext_gcd(ll a,ll b,ll&amp; x,ll&amp; y){
     ll d=a;
@@ -188,9 +188,9 @@ ll ext_gcd(ll a,ll b,ll&amp; x,ll&amp; y){
     }
     return d;
 }</code></pre>
-<p><strong>解的大小</strong>：若$ab \neq 0$，则$|x| \leq b 且 |y| \leq a$。</p>
+<p><strong>解的大小</strong>：若ab != 0，则|x| &lt;= b 且 |y|&lt;= a。</p>
 <p>注：x与y最终结果可能为负，若想得到正的范围则还要加上b或a的值。（x为负，加b，y为负，加a）。</p>
-<h2 id="快速乘"><a href="#快速乘" class="headerlink" title="快速乘"></a>快速乘</h2><p>两个大数快速相乘，复杂度$O(logn)$，在下面代码中，b代表n。</p>
+<h2 id="快速乘"><a href="#快速乘" class="headerlink" title="快速乘"></a>快速乘</h2><p>两个大数快速相乘，复杂度O(logn)，在下面代码中，b代表n。</p>
 <pre><code class="C++">typedef long long ll;
 ll quick_mul(ll a,ll b,ll mod){
     ll res=0;
@@ -202,7 +202,7 @@ ll quick_mul(ll a,ll b,ll mod){
     }
     return res;
 }</code></pre>
-<h2 id="快速幂运算"><a href="#快速幂运算" class="headerlink" title="快速幂运算"></a>快速幂运算</h2><p>高效计算幂运算，复杂度$O(logn)$</p>
+<h2 id="快速幂运算"><a href="#快速幂运算" class="headerlink" title="快速幂运算"></a>快速幂运算</h2><p>高效计算幂运算，复杂度O(logn)</p>
 <pre><code class="c++">typedef long long ll;
 ll mod_pow(ll x,ll n,ll mod){
     ll res=0;
