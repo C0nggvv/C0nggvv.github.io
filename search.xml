@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>基础算法合集</title>
+      <link href="/2020/11/13/%E7%AE%97%E6%B3%95_%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%90%88%E9%9B%86/"/>
+      <url>/2020/11/13/%E7%AE%97%E6%B3%95_%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95%E5%90%88%E9%9B%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="基础算法代码合计"><a href="#基础算法代码合计" class="headerlink" title="基础算法代码合计"></a>基础算法代码合计</h1><blockquote><p> 蓝桥杯复习总结，也为了方便查阅！</p></blockquote><pre><code class="c++">#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;queue&gt;#include &lt;map&gt;#include &lt;algorithm&gt;using namespace std;typedef long long ll;typedef pair&lt;int,int&gt; P;int prime[100];int is_prime[100];int is_prime_small[100];//最大公约数int gcd(int a,int b){    return b==0?a:gcd(b,a%b);}//拓展欧几里得算法int ex_gcd(int a,int b,int&amp; x,int&amp; y) {    int d=a;    if(b!=0){        d = ex_gcd(b,a%b,y,x);        y-=(a/b)*x;    }else{        x=1;y=0;    }    return d;}//素性判定bool Is_prime(int n){    for(int i=2;i*i&lt;=n;i++){        if(n%i==0)            return false;    }    return n!=1;}//约数枚举vector&lt;int&gt; divisor(int n){    vector&lt;int&gt; res;    for(int i=1;i*i&lt;=n;i++){        if(n%i==0){            res.push_back(i);            if(i!=n/i)                res.push_back(n/i);        }    }    return res;}//整数分解map&lt;int,int&gt; prime_factor(int n){    map&lt;int,int&gt; res;    for(int i=2;i*i&lt;=n;i++){        while(n%i==0){            res[i]++;            n/=i;        }    }    if(n!=1)        res[n]=1;    return res;}//埃氏筛法int sieve(int n){    int p=0;    for(int i=0;i&lt;=n;i++)        is_prime[i]=true;    is_prime[0]=is_prime[1]=false;    for(int i=2;i&lt;=n;i++){        if(is_prime[i]){            prime[p++]=i;            for(int j=2*i;j&lt;=n;j+=i){                is_prime[j]=false;            }        }    }    return p;}//求区间素数void segment_sieve(ll a,ll b){    for(int i=0;(ll)i*i&lt;b;i++)        is_prime_small[i]=true;    for(int i=0;i&lt;b-a;i++)        is_prime[i]=true;    for(int i=2;(ll)i*i&lt;b;i++){        if(is_prime_small[i]){            for(int j=2*i;(ll)j*j&lt;=b;j+=i)                is_prime_small[j]=false;            for(ll j=max(2LL,((a+i-1)/i)*i);j&lt;b;j+=i)                is_prime[j-a]=false;        }    }}//快速幂ll mod_pow(ll x,ll n,ll mod){    ll res=1;    while(n){        if(n&amp;1)            res=res*x%mod;        x=x*x%mod;         n&gt;&gt;=1;    }    return res;}//快速乘ll quick_mul(ll a,ll b,ll mod){    ll res=0;    while(b){        if(b%1)            res=(res+a)%mod;        a=(a+a)%mod;        b&gt;&gt;=1;     }    return res;}//全排列void permutation2(int n){    int perm2[10];    for(int i=0;i&lt;n;i++)        perm2[i]=i;    do{        for(int i=0;i&lt;n;i++)            cout&lt;&lt;perm2[i]&lt;&lt;&quot; &quot;;        cout&lt;&lt;endl;    }while(next_permutation(perm2,perm2+n));}//组合void Cnk(int k,int n){    int comb=(1&lt;&lt;k)-1;    while(comb&lt;1&lt;&lt;n){        int x=comb&amp;-comb,y=comb+x;        comb=((comb&amp;~y)/x&gt;&gt;1)|y;        //TODO    }}//求子集void sub(int sup){    int sub=sup;    do{        //TODO        sub=(sub-1)&amp;sup;    }while(sub!=sup);}int main(){    permutation2(4);    return 0;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 常用的算法代码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>欧几里德、快速幂乘</title>
       <link href="/2020/10/11/%E7%AE%97%E6%B3%95_%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82%E4%B9%98/"/>
       <url>/2020/10/11/%E7%AE%97%E6%B3%95_%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82%E4%B9%98/</url>
@@ -199,6 +224,25 @@
     
     
     <entry>
+      <title>2020暑假算法学习笔记</title>
+      <link href="/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+      <url>/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="2020暑假算法学习笔记"><a href="#2020暑假算法学习笔记" class="headerlink" title="2020暑假算法学习笔记"></a>2020暑假算法学习笔记</h1><blockquote><p>这是2020年暑假时期学习算法时的一些笔记，里面记录了各种各样的东西</p></blockquote><h4 id="STL优先队列"><a href="#STL优先队列" class="headerlink" title="STL优先队列"></a>STL优先队列</h4><p>priority_queue&lt;Type, Container, Functional&gt;<br>Type 就是数据类型，Container 就是容器类型（Container必须是用数组实现的容器，比如vector,deque等等，但不能用 list。STL里面默认用的是vector），Functional 就是比较的方式。</p><p>当需要用自定义的数据类型时才需要传入这三个参数，使用基本数据类型时，只需要传入数据类型，默认是大顶堆。</p><pre><code class="c++">//升序队列，小顶堆priority_queue &lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; q;//降序队列，大顶堆priority_queue &lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt;q;</code></pre><h4 id="关于lower-bound-和upper-bound-的常见用法"><a href="#关于lower-bound-和upper-bound-的常见用法" class="headerlink" title="关于lower_bound( )和upper_bound( )的常见用法"></a>关于lower_bound( )和upper_bound( )的常见用法</h4><p>lower_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>upper_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>在从大到小的排序数组中，重载lower_bound()和upper_bound()</p><p>lower_bound( begin,end,num,greater<type>() ):从数组的begin位置到end-1位置二分查找第一个小于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>upper_bound( begin,end,num,greater<type>() ):从数组的begin位置到end-1位置二分查找第一个小于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><h4 id="greater-lt-int-gt-和less-lt-int-gt"><a href="#greater-lt-int-gt-和less-lt-int-gt" class="headerlink" title="greater&lt; int &gt;和less&lt; int &gt;"></a>greater&lt; int &gt;和less&lt; int &gt;</h4><pre><code class="c++">template&lt;class _Ty = void&gt;    struct less    {    // functor for operator&lt;    typedef _Ty first_argument_type;    typedef _Ty second_argument_type;    typedef bool result_type;    constexpr bool operator()(const _Ty&amp; _Left, const _Ty&amp; _Right) const        {    // apply operator&lt; to operands        return (_Left &lt; _Right);        }    };</code></pre><pre><code class="c++">template&lt;class _Ty = void&gt;    struct greater    {    // functor for operator&gt;    typedef _Ty first_argument_type;    typedef _Ty second_argument_type;    typedef bool result_type;    constexpr bool operator()(const _Ty&amp; _Left, const _Ty&amp; _Right) const        {    // apply operator&gt; to operands        return (_Left &gt; _Right);        }    };</code></pre><h4 id="Dilworth定理"><a href="#Dilworth定理" class="headerlink" title="Dilworth定理"></a>Dilworth定理</h4><p><strong>偏序集上最小链划分中链的数量等于其反链长度的最大值。</strong></p><h5 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h5><p>设R是集合<em>A</em>上的一个二元关系，若R（如≤）满足：</p><p>Ⅰ 自反性：对任意<em>x</em>∈<em>A</em>，有<em>x</em>R<em>x</em>；</p><p>Ⅱ 反对称性（即反对称关系）：对任意<em>x</em>,<em>y</em>∈<em>A</em>，若<em>x</em>R<em>y</em>，且<em>y</em>R<em>x</em>，则<em>x</em>=<em>y</em>；</p><p>Ⅲ 传递性：对任意<em>x</em>, <em>y</em>,<em>z</em>∈<em>A</em>，若<em>x</em>R<em>y</em>，且<em>y</em>R<em>z</em>，则<em>x</em>R<em>z</em>。</p><p>则称R为<em>A</em>上的偏序关系，通常记作≼。</p><h5 id="全序集"><a href="#全序集" class="headerlink" title="全序集"></a>全序集</h5><p>设$\leq$为非空集合A上的一个偏序关系，若对于集合∀a,b∈B，都有a≤b或b≤a（即元素两两可比），就称(B,≤)为一个全序集。</p><h5 id="反链"><a href="#反链" class="headerlink" title="反链"></a>反链</h5><p>若偏序集(B,≤)中的元素两两不可比，则称B为反链。</p><h4 id="SPFA伪代码"><a href="#SPFA伪代码" class="headerlink" title="SPFA伪代码"></a>SPFA伪代码</h4><pre><code class="c++"> procedure Shortest-Path-Faster-Algorithm(G, s)  1    for each vertex v ≠ s in V(G)  2        d(v) := ∞  3    d(s) := 0  4    offer s into Q  5    while Q is not empty  6        u := poll Q  7        for each edge (u, v) in E(G)  8            if d(u) + w(u, v) &lt; d(v) then  9                d(v) := d(u) + w(u, v) 10                if v is not in Q then 11                    offer v into Q</code></pre><h4 id="快读"><a href="#快读" class="headerlink" title="快读"></a>快读</h4><h5 id="int-快读"><a href="#int-快读" class="headerlink" title="int 快读"></a>int 快读</h5><pre><code>inline int readi(){    char ch=getchar();    int s=0,w=1;    while(ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;){        if(ch==&#39;-&#39;) w=-1;        ch=getchar();    }    while(ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;){        s=s*10+ch-&#39;0&#39;;    //s=(s&lt;&lt;3)+(s&lt;&lt;1)+(ch^48);        ch=getchar();    }    return s*w;}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>大整数加减法C++代码</title>
       <link href="/2020/09/11/%E7%AE%97%E6%B3%95_%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/"/>
       <url>/2020/09/11/%E7%AE%97%E6%B3%95_%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/</url>
@@ -218,25 +262,6 @@
             <tag> 常用的算法代码 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>2020暑假算法学习笔记</title>
-      <link href="/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="2020暑假算法学习笔记"><a href="#2020暑假算法学习笔记" class="headerlink" title="2020暑假算法学习笔记"></a>2020暑假算法学习笔记</h1><blockquote><p>这是2020年暑假时期学习算法时的一些笔记，里面记录了各种各样的东西</p></blockquote><h4 id="STL优先队列"><a href="#STL优先队列" class="headerlink" title="STL优先队列"></a>STL优先队列</h4><p>priority_queue&lt;Type, Container, Functional&gt;<br>Type 就是数据类型，Container 就是容器类型（Container必须是用数组实现的容器，比如vector,deque等等，但不能用 list。STL里面默认用的是vector），Functional 就是比较的方式。</p><p>当需要用自定义的数据类型时才需要传入这三个参数，使用基本数据类型时，只需要传入数据类型，默认是大顶堆。</p><pre><code class="c++">//升序队列，小顶堆priority_queue &lt;int,vector&lt;int&gt;,greater&lt;int&gt; &gt; q;//降序队列，大顶堆priority_queue &lt;int,vector&lt;int&gt;,less&lt;int&gt; &gt;q;</code></pre><h4 id="关于lower-bound-和upper-bound-的常见用法"><a href="#关于lower-bound-和upper-bound-的常见用法" class="headerlink" title="关于lower_bound( )和upper_bound( )的常见用法"></a>关于lower_bound( )和upper_bound( )的常见用法</h4><p>lower_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>upper_bound( begin,end,num)：从数组的begin位置到end-1位置二分查找第一个大于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>在从大到小的排序数组中，重载lower_bound()和upper_bound()</p><p>lower_bound( begin,end,num,greater<type>() ):从数组的begin位置到end-1位置二分查找第一个小于或等于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><p>upper_bound( begin,end,num,greater<type>() ):从数组的begin位置到end-1位置二分查找第一个小于num的数字，找到返回该数字的地址，不存在则返回end。通过返回的地址减去起始地址begin,得到找到数字在数组中的下标。</p><h4 id="greater-lt-int-gt-和less-lt-int-gt"><a href="#greater-lt-int-gt-和less-lt-int-gt" class="headerlink" title="greater&lt; int &gt;和less&lt; int &gt;"></a>greater&lt; int &gt;和less&lt; int &gt;</h4><pre><code class="c++">template&lt;class _Ty = void&gt;    struct less    {    // functor for operator&lt;    typedef _Ty first_argument_type;    typedef _Ty second_argument_type;    typedef bool result_type;    constexpr bool operator()(const _Ty&amp; _Left, const _Ty&amp; _Right) const        {    // apply operator&lt; to operands        return (_Left &lt; _Right);        }    };</code></pre><pre><code class="c++">template&lt;class _Ty = void&gt;    struct greater    {    // functor for operator&gt;    typedef _Ty first_argument_type;    typedef _Ty second_argument_type;    typedef bool result_type;    constexpr bool operator()(const _Ty&amp; _Left, const _Ty&amp; _Right) const        {    // apply operator&gt; to operands        return (_Left &gt; _Right);        }    };</code></pre><h4 id="Dilworth定理"><a href="#Dilworth定理" class="headerlink" title="Dilworth定理"></a>Dilworth定理</h4><p><strong>偏序集上最小链划分中链的数量等于其反链长度的最大值。</strong></p><h5 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h5><p>设R是集合<em>A</em>上的一个二元关系，若R（如≤）满足：</p><p>Ⅰ 自反性：对任意<em>x</em>∈<em>A</em>，有<em>x</em>R<em>x</em>；</p><p>Ⅱ 反对称性（即反对称关系）：对任意<em>x</em>,<em>y</em>∈<em>A</em>，若<em>x</em>R<em>y</em>，且<em>y</em>R<em>x</em>，则<em>x</em>=<em>y</em>；</p><p>Ⅲ 传递性：对任意<em>x</em>, <em>y</em>,<em>z</em>∈<em>A</em>，若<em>x</em>R<em>y</em>，且<em>y</em>R<em>z</em>，则<em>x</em>R<em>z</em>。</p><p>则称R为<em>A</em>上的偏序关系，通常记作≼。</p><h5 id="全序集"><a href="#全序集" class="headerlink" title="全序集"></a>全序集</h5><p>设$\leq$为非空集合A上的一个偏序关系，若对于集合∀a,b∈B，都有a≤b或b≤a（即元素两两可比），就称(B,≤)为一个全序集。</p><h5 id="反链"><a href="#反链" class="headerlink" title="反链"></a>反链</h5><p>若偏序集(B,≤)中的元素两两不可比，则称B为反链。</p><h4 id="SPFA伪代码"><a href="#SPFA伪代码" class="headerlink" title="SPFA伪代码"></a>SPFA伪代码</h4><pre><code class="c++"> procedure Shortest-Path-Faster-Algorithm(G, s)  1    for each vertex v ≠ s in V(G)  2        d(v) := ∞  3    d(s) := 0  4    offer s into Q  5    while Q is not empty  6        u := poll Q  7        for each edge (u, v) in E(G)  8            if d(u) + w(u, v) &lt; d(v) then  9                d(v) := d(u) + w(u, v) 10                if v is not in Q then 11                    offer v into Q</code></pre><h4 id="快读"><a href="#快读" class="headerlink" title="快读"></a>快读</h4><h5 id="int-快读"><a href="#int-快读" class="headerlink" title="int 快读"></a>int 快读</h5><pre><code>inline int readi(){    char ch=getchar();    int s=0,w=1;    while(ch&lt;&#39;0&#39; || ch&gt;&#39;9&#39;){        if(ch==&#39;-&#39;) w=-1;        ch=getchar();    }    while(ch&gt;=&#39;0&#39; &amp;&amp; ch&lt;=&#39;9&#39;){        s=s*10+ch-&#39;0&#39;;    //s=(s&lt;&lt;3)+(s&lt;&lt;1)+(ch^48);        ch=getchar();    }    return s*w;}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 算法 </category>
-          
-      </categories>
-      
       
     </entry>
     

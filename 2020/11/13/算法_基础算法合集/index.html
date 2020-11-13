@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <title>
-        大整数加减法C++代码 | C0ngvv
+        基础算法合集 | C0ngvv
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -116,13 +116,13 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">大整数加减法C++代码</a></h3>
+            <h3><a class="title-hover-animation">基础算法合集</a></h3>
         </div>
 
         <div class="meta-info">
             <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-09-11 10:47:23
+        <i class="fa fa-calendar-o"></i> 2020-11-13 10:47:23
     </span>
     
         <span class="article-categories article-meta-item">
@@ -155,12 +155,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>505 字</span>
+        <i class="fa fa-book"></i> <span>559 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-        <i class="fa fa-clock-o"></i> <span>2 分钟</span>
+        <i class="fa fa-clock-o"></i> <span>3 分钟</span>
         </span>
     
 </div>
@@ -168,121 +168,181 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="大整数加减法C-代码"><a href="#大整数加减法C-代码" class="headerlink" title="大整数加减法C++代码"></a>大整数加减法C++代码</h1><blockquote>
-<p> 因为写一次这个东西要花点时间，所以粘在这里，下次可以直接站粘过去用。偷个懒，=.= 懒癌患者</p>
+            <h1 id="基础算法代码合计"><a href="#基础算法代码合计" class="headerlink" title="基础算法代码合计"></a>基础算法代码合计</h1><blockquote>
+<p> 蓝桥杯复习总结，也为了方便查阅！</p>
 </blockquote>
-<pre><code class="c++">/**
- * 大整数加法（如99999999999999999+999999999999999)
- * 字符串用string存储
- * 参数s1,s2为得求和的两个大整数
- * 返回值为一个string类型字符串，其值为求和结果
- */
-string add(string s1,string s2){
-    int len1=s1.length();
-    int len2=s2.length();
-    string s=&quot;&quot;;
-    int c=0;
-    int i=len1-1,j=len2-1;
-    while(i&gt;=0 &amp;&amp; j&gt;=0){
-        int cal=s1[i--]-&#39;0&#39;+s2[j--]-&#39;0&#39;+c;
-        c=cal/10;
-        s=char(cal%10+&#39;0&#39;)+s;
-    }
-    while(i&gt;=0){
-        int cal=s1[i--]-&#39;0&#39;+c;
-        c=cal/10;
-        s=char(cal%10+&#39;0&#39;)+s;
-    }
-    while(j&gt;=0){
-        int cal=s2[j--]-&#39;0&#39;+c;
-        c=cal/10;
-        s=char(cal%10+&#39;0&#39;)+s;
-    }
-    if(c){
-        s=char(c+&#39;0&#39;)+s;
-    }
-    return s;
+<pre><code class="c++">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int,int&gt; P;
+
+int prime[100];
+int is_prime[100];
+int is_prime_small[100];
+
+//最大公约数
+int gcd(int a,int b){
+    return b==0?a:gcd(b,a%b);
 }
 
-/**
- * 大整数乘一个一位数（如999999999999999*4）
- * 大整数、返回值用string,一位数用char存储
- * 参数str为大整数，p为一位数（char类型）
- * 返回值为乘积结果string类型
- */
-string muti(string str,char p){
-    string s=&quot;&quot;;
-    int len=str.length();
-    int c=0;
-    int i=len-1;
-    while(i&gt;=0){
-        int cal=(str[i--]-&#39;0&#39;)*(p-&#39;0&#39;)+c;
-        c=cal/10;
-        s=char(cal%10+&#39;0&#39;)+s;
+//拓展欧几里得算法
+int ex_gcd(int a,int b,int&amp; x,int&amp; y) 
+{
+    int d=a;
+    if(b!=0){
+        d = ex_gcd(b,a%b,y,x);
+        y-=(a/b)*x;
+    }else{
+        x=1;y=0;
     }
-    if(c){
-        s=char(c+&#39;0&#39;)+s;
-    }
-    return s;
+    return d;
 }
 
-/**
- * 大整数乘法(如99999999999999999*99999999999999999)
- * 参数为两个非负大整数，类型为string
- * 返回值为大整数乘积结果，类型为string
- * 注：需要调用上面的muti(string,string)函数
- */
-string mutiple(string s1,string s2){
-    if(s1==&quot;0&quot; || s2==&quot;0&quot;){
-        return &quot;0&quot;;
+//素性判定
+bool Is_prime(int n){
+    for(int i=2;i*i&lt;=n;i++){
+        if(n%i==0)
+            return false;
     }
-    int len=s2.length();
-    string ans=&quot;&quot;;
-    string str=&quot;&quot;;
-    for(int i=len-1;i&gt;=0;i--){
-        ans=add(ans,muti(s1,s2[i])+str);
-        str+=&#39;0&#39;;
-    }
-    return ans;
+    return n!=1;
 }
 
-/**
- * 整数转字符串
- * 参数为一非负整数，可以修改为long long
- * 返回值为该整数对应的字符串
- * 注：手打没有运行过，应该没问题
- */
-string change(int num){
-    if(num==0)
-        return &quot;0&quot;;
-    string s=&quot;&quot;;
-    while(num){
-        s=char(num%10+&#39;0&#39;)+s;
-        num/=10;
+//约数枚举
+vector&lt;int&gt; divisor(int n){
+    vector&lt;int&gt; res;
+    for(int i=1;i*i&lt;=n;i++){
+        if(n%i==0){
+            res.push_back(i);
+            if(i!=n/i)
+                res.push_back(n/i);
+        }
     }
-    return s;
+    return res;
+}
+
+//整数分解
+map&lt;int,int&gt; prime_factor(int n){
+    map&lt;int,int&gt; res;
+    for(int i=2;i*i&lt;=n;i++){
+        while(n%i==0){
+            res[i]++;
+            n/=i;
+        }
+    }
+    if(n!=1)
+        res[n]=1;
+    return res;
+}
+
+//埃氏筛法
+int sieve(int n){
+    int p=0;
+    for(int i=0;i&lt;=n;i++)
+        is_prime[i]=true;
+    is_prime[0]=is_prime[1]=false;
+    for(int i=2;i&lt;=n;i++){
+        if(is_prime[i]){
+            prime[p++]=i;
+            for(int j=2*i;j&lt;=n;j+=i){
+                is_prime[j]=false;
+            }
+        }
+    }
+    return p;
+}
+
+//求区间素数
+void segment_sieve(ll a,ll b){
+    for(int i=0;(ll)i*i&lt;b;i++)
+        is_prime_small[i]=true;
+    for(int i=0;i&lt;b-a;i++)
+        is_prime[i]=true;
+    for(int i=2;(ll)i*i&lt;b;i++){
+        if(is_prime_small[i]){
+            for(int j=2*i;(ll)j*j&lt;=b;j+=i)
+                is_prime_small[j]=false;
+            for(ll j=max(2LL,((a+i-1)/i)*i);j&lt;b;j+=i)
+                is_prime[j-a]=false;
+        }
+    }
+}
+
+//快速幂
+ll mod_pow(ll x,ll n,ll mod){
+    ll res=1;
+    while(n){
+        if(n&amp;1)
+            res=res*x%mod;
+        x=x*x%mod; 
+        n&gt;&gt;=1;
+    }
+    return res;
+}
+
+//快速乘
+ll quick_mul(ll a,ll b,ll mod){
+    ll res=0;
+    while(b){
+        if(b%1)
+            res=(res+a)%mod;
+        a=(a+a)%mod;
+        b&gt;&gt;=1; 
+    }
+    return res;
+}
+
+//全排列
+void permutation2(int n){
+    int perm2[10];
+    for(int i=0;i&lt;n;i++)
+        perm2[i]=i;
+    do{
+        for(int i=0;i&lt;n;i++)
+            cout&lt;&lt;perm2[i]&lt;&lt;&quot; &quot;;
+        cout&lt;&lt;endl;
+    }while(next_permutation(perm2,perm2+n));
+}
+
+//组合
+void Cnk(int k,int n){
+    int comb=(1&lt;&lt;k)-1;
+    while(comb&lt;1&lt;&lt;n){
+        int x=comb&amp;-comb,y=comb+x;
+        comb=((comb&amp;~y)/x&gt;&gt;1)|y;
+        //TODO
+    }
+}
+
+//求子集
+void sub(int sup){
+    int sub=sup;
+    do{
+        //TODO
+        sub=(sub-1)&amp;sup;
+    }while(sub!=sup);
+}
+
+int main()
+{
+    permutation2(4);
+    return 0;
 }</code></pre>
 
         </div>
 
         <div class="article-nav">
             
-                <div class="article-prev">
-                    <a class="prev btn"
-                       rel="prev"
-                       href="/2020/09/11/2020%E6%9A%91%E5%81%87%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"
-                    >
-                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">2020暑假算法学习笔记</span><span class="post-nav-item">上一篇</span>
-                    </a>
-                </div>
-            
             
                 <div class="article-next">
                     <a class="next btn"
                        rel="next"
-                       href="/2020/09/10/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-10/"
+                       href="/2020/10/11/%E7%AE%97%E6%B3%95_%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%B7%E3%80%81%E5%BF%AB%E9%80%9F%E5%B9%82%E4%B9%98/"
                     >
-                        <span class="post-nav-title-item">20200910日常记录</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                        <span class="post-nav-title-item">欧几里德、快速幂乘</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
                     </a>
                 </div>
             
@@ -300,7 +360,7 @@ string change(int num){
         <div class="article-toc">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#大整数加减法C-代码"><span class="nav-number">1.</span> <span class="nav-text">大整数加减法C++代码</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础算法代码合计"><span class="nav-number">1.</span> <span class="nav-text">基础算法代码合计</span></a></li></ol>
     </div>
 </div>
         </div>
