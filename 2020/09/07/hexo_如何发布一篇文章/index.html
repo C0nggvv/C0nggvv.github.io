@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <title>
-        20200910日常记录 | C0ngvv
+        hexo如何发布文章到博客上 | C0ngvv
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -116,13 +116,13 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">20200910日常记录</a></h3>
+            <h3><a class="title-hover-animation">hexo如何发布文章到博客上</a></h3>
         </div>
 
         <div class="meta-info">
             <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-09-10 22:17:23
+        <i class="fa fa-calendar-o"></i> 2020-09-07 11:39:01
     </span>
     
         <span class="article-categories article-meta-item">
@@ -130,7 +130,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%95%E4%B8%8E%E5%8F%8D%E6%80%9D/">日常记录与反思</a>
+                        <a href="/categories/hexo/">hexo</a>
                     </li>
                 
             </ul>
@@ -144,12 +144,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>499 字</span>
+        <i class="fa fa-book"></i> <span>742 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-        <i class="fa fa-clock-o"></i> <span>1 分钟</span>
+        <i class="fa fa-clock-o"></i> <span>2 分钟</span>
         </span>
     
 </div>
@@ -157,20 +157,58 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="2020-9-10的日常记录"><a href="#2020-9-10的日常记录" class="headerlink" title="2020/9/10的日常记录"></a>2020/9/10的日常记录</h1><h2 id="日程记录"><a href="#日程记录" class="headerlink" title="日程记录"></a>日程记录</h2><p>五点醒，努力睡着……</p>
-<p>五点半，睡不着看会书</p>
-<p>五点五十多开始<strong>背单词</strong>，到六点半，然后出去<strong>滑滑板</strong>，滑了半个小时，吃饭上课</p>
-<p>上午上完课后回来做了两道<strong>算法题</strong>，四十分钟，后来又钻了一道算法题，到十一半了都，然后吃饭，看脱口秀。</p>
-<p>吃完饭看了半小时<strong>算法书</strong>，睡觉</p>
-<p>下午做实验，回来开始试着看能不能<strong>打1寸照片</strong>，弄到五点半吃饭</p>
-<p>吃完饭，给那个人<strong>回信</strong>，边回边发呆，八点散步，回来还是继续回信……到九点</p>
-<p>现在九点半，写日记，然后一会就上床休息看书了。</p>
-<h2 id="今日反思"><a href="#今日反思" class="headerlink" title="今日反思"></a>今日反思</h2><p>今天觉得很累，但在预期之内。今天有一项任务没有做，就是做软考题。今天就算是休息了，明天必须得做一点。</p>
-<p>最近情绪开始有点松懈了，有时间的话要反思一下，是哪里的问题，接下来该怎么做。</p>
-<h2 id="今日日记"><a href="#今日日记" class="headerlink" title="今日日记"></a>今日日记</h2><p>现在我觉得很累，今天有趣的事就是上午的时间都用来做三道算法题，下午终于尝试了打1寸照片，自从软考报名搞照片就有了这个想法，发现我其实可以打1寸照片的，但一直没开始尝试，今天终于做了一下，效果还不错。</p>
-<p>晚上回了那封信，想到了什么就写了什么，总算也算是回了，我还给她附加了一本电子书《见识》，我觉得这本书很不错。</p>
-<p>我觉得很累，不想写了，今天就到这里吧。</p>
-<p>OK,再记录一件事，刚才我在提交文章的时候居然乱码了，在本地服务器打开没什么问题，提交到github 再打开居然乱码了！后来我又重新生成了一遍，又重新发布上去，好了。</p>
+            <h1 id="hexo如何发布文章到个人博客上"><a href="#hexo如何发布文章到个人博客上" class="headerlink" title="hexo如何发布文章到个人博客上"></a>hexo如何发布文章到个人博客上</h1><blockquote>
+<p><strong>概述</strong></p>
+<p>探究利用hexo如何发布一篇文章。</p>
+<p>博客搭建方式：github+hexo</p>
+</blockquote>
+<h2 id="发布文章大致流程"><a href="#发布文章大致流程" class="headerlink" title="发布文章大致流程"></a>发布文章大致流程</h2><p>1.在source下的_posts中创建md文件，即文章内容。</p>
+<p>2.在博客站点下右箭，选择Git Bash Here，输入命令 <code>hexo g</code>(<code>hexo generate</code>)  生成静态文件。</p>
+<p>3.可以输入<code>hexo s</code>（<code>hexo server</code>）进行本地预览，地址为 *<em>localhost:4000 *</em> 。</p>
+<p>4.没有问题后，输入命令<code>hexo d</code> （<code>hexo display</code>），将本地文件发布到github仓库上。</p>
+<h2 id="如何新建一篇文章"><a href="#如何新建一篇文章" class="headerlink" title="如何新建一篇文章"></a>如何新建一篇文章</h2><p>hexo新建一篇文章的命令为</p>
+<pre><code class="bash">hexo new [layout] &lt;title&gt;</code></pre>
+<p>如果没有设置 <code>layout</code> 的话，默认使用 <a href="https://hexo.io/zh-cn/docs/configuration" target="_blank" rel="noopener">_config.yml</a> 中的 <code>default_layout</code> 参数代替。如果标题包含空格的话，需要使用引号括起来。例如：</p>
+<pre><code class="bash">hexo new &quot;post title with whitespace&quot;</code></pre>
+<h2 id="新建文章中的-是干什么的"><a href="#新建文章中的-是干什么的" class="headerlink" title="新建文章中的---是干什么的"></a>新建文章中的<code>---</code>是干什么的</h2><p>Front-matter 是文件最上方以 <code>---</code> 分隔的区域，用于指定个别文件的变量，举例来说：</p>
+<pre><code class="markdown">---
+title: Hello World
+date: 2013/7/13 20:46:25
+---</code></pre>
+<p>为文章添加分类和标签即是在此区域添加。</p>
+<h2 id="如何给文章添加分类"><a href="#如何给文章添加分类" class="headerlink" title="如何给文章添加分类"></a>如何给文章添加分类</h2><p>前面可能部分需要自己手动添加创建“分类”选项，可参考最后的<a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">参考链接</a>，这里没有叙述。</p>
+<p>若想给文章添加分类只需给文章添加“categories”属性即可，如下面的例子：</p>
+<pre><code class="markdown">---
+title: Hexo 添加分类及标签
+date: 2017-05-26 12:12:57
+categories: Hexo
+---</code></pre>
+<p>添加好分类后，点击博客中每个分类就可以看到该分类下的所有文章（即包含categories: xxx的所有文章）。</p>
+<p>注意事项：<strong>分类具有顺序性和层次性</strong>，hexo一篇文章只能属于一个分类，如在”- web前端“下面添加”-xxx“不会产生并列的两个分类，而是会嵌套的一个分类。</p>
+<h2 id="如何给文章添加标签"><a href="#如何给文章添加标签" class="headerlink" title="如何给文章添加标签"></a>如何给文章添加标签</h2><p>添加标签的方法与添加分类类似，前面创建”标签“选项的内容也没有叙述，可以参考最后的<a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">参考链接</a>。</p>
+<p>给文章添加标签只需要在文章中添加”tag”属性，下面为添加标签的例子：</p>
+<pre><code class="markdown">---
+title: jQuery对表单的操作及更多应用
+date: 2017-05-26 12:12:57
+categories: 
+- web前端
+tags:
+- jQuery
+- 表格
+- 表单验证
+---</code></pre>
+<p><strong>标签没有顺序性和层次性</strong>，即写多个标签是可以并列的，不会出现嵌套。</p>
+<h2 id="其他内容"><a href="#其他内容" class="headerlink" title="其他内容"></a>其他内容</h2><ul>
+<li>在<strong>scaffolds</strong>目录下，是新建页面的模板，执行新建命令时，是根据这里的模板页来完成的，所以可以在这里根据你自己的需求添加一些默认值。比如我们可以打开scaffolds/post.md文件，在tages:上面加入categories:,保存后，之后执行<code>hexo new 文章名</code>命令生成的文件，页面里就有<strong>categories:</strong>项了。</li>
+</ul>
+<h2 id="其他参考链接"><a href="#其他参考链接" class="headerlink" title="其他参考链接"></a>其他参考链接</h2><ul>
+<li><p><a href="https://www.jianshu.com/p/e17711e44e00" target="_blank" rel="noopener">Hexo使用攻略-添加分类及标签</a></p>
+</li>
+<li><p><a href="https://hexo.io/zh-cn/docs/commands" target="_blank" rel="noopener">官方hexo指令介绍</a></p>
+</li>
+<li><p><a href="https://hexo.io/zh-cn/docs/front-matter" target="_blank" rel="noopener">官方Front-matter介绍</a></p>
+</li>
+</ul>
 
         </div>
 
@@ -179,9 +217,9 @@
                 <div class="article-prev">
                     <a class="prev btn"
                        rel="prev"
-                       href="/2020/09/11/%E7%AE%97%E6%B3%95_%E5%A4%A7%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E6%B3%95/"
+                       href="/2020/09/07/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%A4%8D%E4%B9%A0/"
                     >
-                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">大整数加减法C++代码</span><span class="post-nav-item">上一篇</span>
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">vlan及三层交换的简单复习</span><span class="post-nav-item">上一篇</span>
                     </a>
                 </div>
             
@@ -189,9 +227,9 @@
                 <div class="article-next">
                     <a class="next btn"
                        rel="next"
-                       href="/2020/09/09/%E6%97%A5%E5%B8%B8%E8%AE%B0%E5%BD%952020-9-9/"
+                       href="/2020/03/19/hexo_hello-world/"
                     >
-                        <span class="post-nav-title-item">20200909日常记录</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                        <span class="post-nav-title-item">Hello World</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
                     </a>
                 </div>
             
@@ -209,7 +247,7 @@
         <div class="article-toc">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2020-9-10的日常记录"><span class="nav-number">1.</span> <span class="nav-text">2020&#x2F;9&#x2F;10的日常记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#日程记录"><span class="nav-number">1.1.</span> <span class="nav-text">日程记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日反思"><span class="nav-number">1.2.</span> <span class="nav-text">今日反思</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#今日日记"><span class="nav-number">1.3.</span> <span class="nav-text">今日日记</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo如何发布文章到个人博客上"><span class="nav-number">1.</span> <span class="nav-text">hexo如何发布文章到个人博客上</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#发布文章大致流程"><span class="nav-number">1.1.</span> <span class="nav-text">发布文章大致流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何新建一篇文章"><span class="nav-number">1.2.</span> <span class="nav-text">如何新建一篇文章</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建文章中的-是干什么的"><span class="nav-number">1.3.</span> <span class="nav-text">新建文章中的---是干什么的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何给文章添加分类"><span class="nav-number">1.4.</span> <span class="nav-text">如何给文章添加分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何给文章添加标签"><span class="nav-number">1.5.</span> <span class="nav-text">如何给文章添加标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他内容"><span class="nav-number">1.6.</span> <span class="nav-text">其他内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他参考链接"><span class="nav-number">1.7.</span> <span class="nav-text">其他参考链接</span></a></li></ol></li></ol>
     </div>
 </div>
         </div>
