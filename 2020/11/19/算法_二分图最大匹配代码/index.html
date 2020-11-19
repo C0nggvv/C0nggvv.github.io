@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <title>
-        python建模常用绘图命令 | C0ngvv
+        二分图匹配代码C++ | C0ngvv
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -116,13 +116,13 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">python建模常用绘图命令</a></h3>
+            <h3><a class="title-hover-animation">二分图匹配代码C++</a></h3>
         </div>
 
         <div class="meta-info">
             <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-11-18 22:17:23
+        <i class="fa fa-calendar-o"></i> 2020-11-19 22:50:23
     </span>
     
         <span class="article-categories article-meta-item">
@@ -130,12 +130,23 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+                        <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
                     </li>
                 
             </ul>
         </span>
     
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81/">常用的算法代码</a>
+                    </li>
+                
+            </ul>
+        </span>
     
     
         <span class="article-pv article-meta-item">
@@ -144,12 +155,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>330 字</span>
+        <i class="fa fa-book"></i> <span>456 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-        <i class="fa fa-clock-o"></i> <span>1 分钟</span>
+        <i class="fa fa-clock-o"></i> <span>2 分钟</span>
         </span>
     
 </div>
@@ -157,66 +168,135 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="python建模常用命令"><a href="#python建模常用命令" class="headerlink" title="python建模常用命令"></a>python建模常用命令</h1><h2 id="绘图命令"><a href="#绘图命令" class="headerlink" title="绘图命令"></a>绘图命令</h2><pre><code class="python">import numpy as np 
-import matplotlib.pyplot as plt 
-import matplotlib
-from scipy.optimize import leastsq            #导入最小二乘法库
-matplotlib.rcParams[&#39;font.family&#39;]=&#39;SimHei&#39;    #设置中文字体显示
-matplotlib.rcParams[&#39;font.size&#39;]=16</code></pre>
-<pre><code class="python">#评选举重总冠军
-jibie=np.array([56,62,69,77,85,94,105])            #创建或导入数据
-zhuaju=np.array([138,153,165,176,187,188,200])
-tingju=np.array([168,182,198,210,218,233,237])
-zong=np.array([305,327,358,380,394,418,436])</code></pre>
-<pre><code class="python">plt.plot(np.log(jibie),zhuaju,&#39;bx&#39;,label=&#39;抓举&#39;)    #绘图
-plt.plot(np.log(jibie),tingju,&#39;bD&#39;,label=&#39;挺举&#39;)
-plt.plot(np.log(jibie),zong,&#39;bo&#39;,label=&#39;总成绩&#39;)
-plt.legend()
-plt.title(&#39;普通坐标&#39;)
-plt.xlabel(&#39;体重/kg&#39;)
-plt.ylabel(&#39;世界记录/kg&#39;)
-plt.show()</code></pre>
-<h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><pre><code class="python">from scipy.optimize import leastsq            #导入最小二乘法库
+            <h1 id="二分图最大匹配代码"><a href="#二分图最大匹配代码" class="headerlink" title="二分图最大匹配代码"></a>二分图最大匹配代码</h1><blockquote>
+<p> 《挑战程序设计竞赛》每日学习笔记，也为了方便查阅！</p>
+</blockquote>
+<h2 id="利用最大流算法求解二分图最大匹配"><a href="#利用最大流算法求解二分图最大匹配" class="headerlink" title="利用最大流算法求解二分图最大匹配"></a>利用最大流算法求解二分图最大匹配</h2><p>时间复杂度O(|V||E|)</p>
+<pre><code class="c++">#include &lt;stdio.h&gt;
+#include &lt;vector&gt;
+#include &lt;queue&gt;
+#include &lt;cstring&gt;
+using namespace std;
+#define MAX_V 1000
+const int inf=0x3fffffff;
 
-def Fun(p,x):                        # 定义拟合函数形式
-    a1,a2 = p
-    return a1*(x+a2)                #公式和参数可根据具体情况改变
+typedef struct edge{
+    int to,cap,rev;
+}edge;
+vector&lt;edge&gt; G[MAX_V];
+int level[MAX_V];
+int iter[MAX_V];
 
-def error (p,x,y):                   # 拟合残差
-    return Fun(p,x)-y 
+void add_edge(int from,int to,int cap){
+    G[from].push_back((edge){to,cap,G[to].size()});
+    G[to].push_back((edge){from,0,G[from].size()-1});
+}
 
-p0 = [2.7,60]
-para =leastsq(error, p0, args=(jibie,zong))  # 进行拟合
-print (para[0])            #参数保存在para[0]中
+void bfs(int s){
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt; que;
+    level[s]=0;
+    que.push(s);
+    while(!que.empty()){
+        int v=que.front();que.pop();
+        for(int i=0;i&lt;G[v].size();i++){
+            edge e=G[v][i];
+            if(e.cap&gt;0 &amp;&amp; level[e.to]&lt;0){
+                level[e.to]=level[v]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
 
-#绘制拟合的图像
-y_fitted = Fun (para[0],jibie)        #根据拟合的函数计算函数值
-plt.figure
-plt.plot(jibie,zong,&#39;bo&#39;, label = &#39;Original curve&#39;)
-plt.plot(jibie,y_fitted,&#39;-b&#39;, label =&#39;Fitted curve&#39;)
-plt.legend()
-plt.show()</code></pre>
+int dfs(int v,int t,int f){
+    if(v==t) return f;
+    for(int &amp;i=iter[v];i&lt;G[v].size();i++){
+        edge&amp; e=G[v][i];
+        if(e.cap&gt;0 &amp;&amp; level[e.to]&gt;level[v]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            e.cap-=d;
+            G[e.to][e.rev].cap+=d;
+            return d;
+        }
+    }
+    return 0;
+}
+
+int max_flow(int s,int t){
+    int flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0) return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,inf)&gt;0){
+            flow+=f;
+        }
+    }
+
+}
+
+int main()
+{
+    //INPUT G[V],s,t
+    //int maxFlow=max_flow(s,t);
+    return 0;
+}</code></pre>
+<h2 id="利用二分图性质求解二分图最大匹配"><a href="#利用二分图性质求解二分图最大匹配" class="headerlink" title="利用二分图性质求解二分图最大匹配"></a>利用二分图性质求解二分图最大匹配</h2><pre><code class="c++">#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;cstring&gt;
+using namespace std;
+#define MAX_V 1000
+
+int V;        //顶点数
+vector&lt;int&gt; G[MAX_V];
+int match[MAX_V];
+bool used[MAX_V];
+
+void add_edge(int u,int v){
+    G[u].push_back(v);
+    G[v].push_back(u);
+}
+
+bool dfs(int v){
+    used[v]=true;
+    for(int i=0;i&lt;G[v].size();i++){
+        int u=G[v][i],w=match[u];
+        if(w&lt;0 || !used[w] &amp;&amp; dfs(w)){
+            match[u]=v;
+            match[v]=u;
+            return true;
+        }
+    }
+    return false;
+}
+
+int bipartite_matching(){
+    int res=0;
+    memset(match,-1,sizeof(match))
+    for(int v=0;v&lt;V;v++){
+        if(match[v]&lt;0){
+            memset(used,0,sizeof(used));
+            if(dfs(v)){
+                res++;
+            }
+        }
+    }
+    return res;
+}</code></pre>
 
         </div>
 
         <div class="article-nav">
             
-                <div class="article-prev">
-                    <a class="prev btn"
-                       rel="prev"
-                       href="/2020/11/19/%E7%AE%97%E6%B3%95_%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E4%BB%A3%E7%A0%81/"
-                    >
-                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">二分图匹配代码C++</span><span class="post-nav-item">上一篇</span>
-                    </a>
-                </div>
-            
             
                 <div class="article-next">
                     <a class="next btn"
                        rel="next"
-                       href="/2020/11/18/%E7%AE%97%E6%B3%95_%E6%9C%80%E5%A4%A7%E6%B5%81%E9%97%AE%E9%A2%98%E4%BB%A3%E7%A0%81/"
+                       href="/2020/11/18/%E5%BB%BA%E6%A8%A1_python%E5%BB%BA%E6%A8%A1%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
                     >
-                        <span class="post-nav-title-item">最大流问题求解代码C++</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                        <span class="post-nav-title-item">python建模常用绘图命令</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
                     </a>
                 </div>
             
@@ -234,7 +314,7 @@ plt.show()</code></pre>
         <div class="article-toc">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python建模常用命令"><span class="nav-number">1.</span> <span class="nav-text">python建模常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#绘图命令"><span class="nav-number">1.1.</span> <span class="nav-text">绘图命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小二乘法"><span class="nav-number">1.2.</span> <span class="nav-text">最小二乘法</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图最大匹配代码"><span class="nav-number">1.</span> <span class="nav-text">二分图最大匹配代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用最大流算法求解二分图最大匹配"><span class="nav-number">1.1.</span> <span class="nav-text">利用最大流算法求解二分图最大匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用二分图性质求解二分图最大匹配"><span class="nav-number">1.2.</span> <span class="nav-text">利用二分图性质求解二分图最大匹配</span></a></li></ol></li></ol>
     </div>
 </div>
         </div>
