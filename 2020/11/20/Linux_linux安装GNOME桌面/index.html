@@ -155,7 +155,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>317 字</span>
+        <i class="fa fa-book"></i> <span>346 字</span>
         </span>
     
     
@@ -174,9 +174,10 @@
 </blockquote>
 <h2 id="利用ISO完整版镜像本地离线安装"><a href="#利用ISO完整版镜像本地离线安装" class="headerlink" title="利用ISO完整版镜像本地离线安装"></a>利用ISO完整版镜像本地离线安装</h2><h3 id="1-YUM本地安装源获得"><a href="#1-YUM本地安装源获得" class="headerlink" title="1.YUM本地安装源获得"></a>1.YUM本地安装源获得</h3><p>查看光盘挂载情况 <code>mount</code></p>
 <p>若未被挂载或重新挂载：</p>
-<pre><code class="bash"></code></pre>
+<pre><code class="bash">mkdir /mnt/cdrom                #创建被挂载的目标目录
+mount /dev/sr0 /mnt/cdrom        #挂载</code></pre>
 <p>此挂载为临时挂载，若要永久挂载，可设置系统启动自动挂载，在<code>/etc/fstab</code>配置文件的最后一行添加下面代码，表示自动挂载。</p>
-<pre><code class="bash"></code></pre>
+<pre><code class="bash">/dev/sr0    /mnt/cdrom    iso9660 ro,relatime    0  0</code></pre>
 <h3 id="2-YUM本地安装源配置"><a href="#2-YUM本地安装源配置" class="headerlink" title="2.YUM本地安装源配置"></a>2.YUM本地安装源配置</h3><h4 id="创建软件仓库的配置文件"><a href="#创建软件仓库的配置文件" class="headerlink" title="创建软件仓库的配置文件"></a>创建软件仓库的配置文件</h4><pre><code class="bash">mkdir /root/yum.repo                    #创建备份目录
 mv /etc/yum.repos.d/* /root/yum.repo    #移动备份文件
 vi /etc/yum.repos.d/local.repo            #创建新的配置文件</code></pre>
