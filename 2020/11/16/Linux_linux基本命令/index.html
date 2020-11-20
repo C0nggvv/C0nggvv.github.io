@@ -155,7 +155,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>715 字</span>
+        <i class="fa fa-book"></i> <span>726 字</span>
         </span>
     
     
@@ -220,7 +220,10 @@
 </li>
 </ul>
 </li>
-<li>创建测试目录test <code>mkdir test</code></li>
+<li>创建测试目录test <code>mkdir test</code><ul>
+<li><code>-p</code> 递归生成目录：<code>mkdir -p dir/subdir</code></li>
+</ul>
+</li>
 <li>创建一个新的空文件newfile<ul>
 <li>利用touch命令 <code>touch newfile</code></li>
 </ul>
@@ -253,7 +256,7 @@
 <li><code>-p</code> 递归删除，若子目录删除后父目录为空则递归删除父目录</li>
 </ul>
 </li>
-<li>给文件创建连接<code>link [-s] 源文件 [目标文件]</code><ul>
+<li>给文件创建连接<code>ln [-s] 源文件 [目标文件]</code><ul>
 <li>给文件profile创建一个<strong>符号链接</strong>lnsprofile <code>ln -s profile lnsprofile</code></li>
 <li>给文件profile创建一个<strong>硬链接</strong>lnhprofile <code>ln profile lnhprofile</code></li>
 </ul>

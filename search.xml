@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>linux安装GNOME桌面</title>
+      <link href="/2020/11/20/Linux_linux%E5%AE%89%E8%A3%85GNOME%E6%A1%8C%E9%9D%A2/"/>
+      <url>/2020/11/20/Linux_linux%E5%AE%89%E8%A3%85GNOME%E6%A1%8C%E9%9D%A2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="linux安装GNOME桌面"><a href="#linux安装GNOME桌面" class="headerlink" title="linux安装GNOME桌面"></a>linux安装GNOME桌面</h1><blockquote><p>Linux版本为CentOS 7. </p><p>未完待更…</p></blockquote><h2 id="利用ISO完整版镜像本地离线安装"><a href="#利用ISO完整版镜像本地离线安装" class="headerlink" title="利用ISO完整版镜像本地离线安装"></a>利用ISO完整版镜像本地离线安装</h2><h3 id="1-YUM本地安装源获得"><a href="#1-YUM本地安装源获得" class="headerlink" title="1.YUM本地安装源获得"></a>1.YUM本地安装源获得</h3><p>查看光盘挂载情况 <code>mount</code></p><p>若未被挂载或重新挂载：</p><pre><code class="bash"></code></pre><p>此挂载为临时挂载，若要永久挂载，可设置系统启动自动挂载，在<code>/etc/fstab</code>配置文件的最后一行添加下面代码，表示自动挂载。</p><pre><code class="bash"></code></pre><h3 id="2-YUM本地安装源配置"><a href="#2-YUM本地安装源配置" class="headerlink" title="2.YUM本地安装源配置"></a>2.YUM本地安装源配置</h3><h4 id="创建软件仓库的配置文件"><a href="#创建软件仓库的配置文件" class="headerlink" title="创建软件仓库的配置文件"></a>创建软件仓库的配置文件</h4><pre><code class="bash">mkdir /root/yum.repo                    #创建备份目录mv /etc/yum.repos.d/* /root/yum.repo    #移动备份文件vi /etc/yum.repos.d/local.repo            #创建新的配置文件</code></pre><h4 id="编写repo文件并指向光盘镜像文件挂载点"><a href="#编写repo文件并指向光盘镜像文件挂载点" class="headerlink" title="编写repo文件并指向光盘镜像文件挂载点"></a>编写repo文件并指向光盘镜像文件挂载点</h4><p>在该新的配置文件local.repo内写入如下内容</p><pre><code class="bash">[local]name=localbaseurl=file:///mnt/cdrom        #指向镜像文件的挂载目录enabled=1                        #1表示可用状态gpgcheck=0                        #不检验待安装RPM包</code></pre><h4 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h4><pre><code class="bash">yum clean all            #清除缓存yum makecahe            #把YUM源缓存到本地</code></pre><h4 id="安装GNOME桌面"><a href="#安装GNOME桌面" class="headerlink" title="安装GNOME桌面"></a>安装GNOME桌面</h4><pre><code class="bash">yum grouplist                         #显示所有可用的的套件，其中有’GNOME Desktop&#39;yum groupinstall &#39;GNOME Desktop&#39;    #安装GNOME桌面，名字与上面一步出现的名字一致</code></pre><h4 id="重启-amp-启动桌面"><a href="#重启-amp-启动桌面" class="headerlink" title="重启&amp;启动桌面"></a>重启&amp;启动桌面</h4><pre><code class="bash">reboot                    #重启startx                    #启动桌面服务</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux软件安装 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>linux用户与权限</title>
+      <link href="/2020/11/20/Linux_linux%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90/"/>
+      <url>/2020/11/20/Linux_linux%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="linux用户与权限"><a href="#linux用户与权限" class="headerlink" title="linux用户与权限"></a>linux用户与权限</h1><blockquote><p>未完待更…</p></blockquote><ul><li>切换用户 <code>su [-] [用户名]</code><ul><li><code>-</code> 表示切换时是否带切换用户的环境变量</li><li>如果不带用户名则是指普通用户切换到root用户<ul><li>切换到root用户 <code>su -</code> 或 <code>su - root</code></li><li>切换到admin用户 <code>su - admin</code></li></ul></li></ul></li><li>查看当前系统各用户的账户信息 <code>cat /etc/passwd</code><ul><li>使用grep确认系统中是否已有hx 用户 <code>grep hx /etc/passed</code></li></ul></li><li>创建新用户 <code>useradd [参数] 用户名</code><ul><li>创建hx 新用户 <code>useradd hx</code></li></ul></li><li>设置用户账号口令（密码） <code>passwd [参数] 用户名</code><ul><li>若不使用参数及不指定用户名，则为当前用户修改自身口令<ul><li>设置hx 的密码<code>passwd hx</code></li></ul></li></ul></li><li>创建新的用户组 <code>groupadd [-r] 组名</code><ul><li><code>-r</code> 带r参数表示建立系统组，否则建立普通组<ul><li>建立 xinan 用户组 <code>group xinan</code></li></ul></li></ul></li><li>在用户组中添加/删除指定用户 <code>gpasswd [参数] 用户名 组名</code><ul><li><code>gpasswd -a username groupname</code> 将指定用户添加到用户组中</li><li><code>gpasswd -d username groupname</code> 将指定用户从用户组中删除</li><li><code>gpasswd -A username groupname</code> 设指定用户为组的管理员<ul><li>将hx假如xinan组中 <code>gpasswd -a hx xinan</code></li></ul></li></ul></li><li>修改文件的属主与属组 <code>chown [选项] [所有者][:[组]] 文件列表</code><ul><li>修改文件f1的属组为wdg <code>chown :wdg f1</code></li></ul></li><li>修改文件权限 <code>chmod [选项] 模式[,模式] 文件名</code> 或 <code>chmod 八进制模式 文件名</code><ul><li>字母模式修改权限<ul><li>用户对象<ul><li><code>u</code> user用户对象</li><li><code>g</code> group同组用户</li><li><code>o</code> others其他用户</li><li><code>a</code> all以上所有用户</li></ul></li><li>操作符号<ul><li><code>+</code> 添加某个权限</li><li><code>-</code>取消某个权限</li><li><code>=</code>赋予给定权限并取消其他所有权限</li></ul></li><li>操作权限<ul><li><code>r</code> 可读</li><li><code>w</code> 可写</li><li><code>x</code> 可执行</li></ul></li><li>案例<ul><li><code>chmod u+x,g+w,o-r f1</code></li><li><code>chmod a=rw f2</code></li></ul></li></ul></li><li>数字形式修改权限<ul><li>案例 <code>chmod 644 f1</code></li></ul></li></ul></li><li>用exit退出用户命令，返回root命令 <code>exit</code></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux命令 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>二分图匹配代码C++</title>
       <link href="/2020/11/19/%E7%AE%97%E6%B3%95_%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E4%BB%A3%E7%A0%81/"/>
       <url>/2020/11/19/%E7%AE%97%E6%B3%95_%E4%BA%8C%E5%88%86%E5%9B%BE%E6%9C%80%E5%A4%A7%E5%8C%B9%E9%85%8D%E4%BB%A3%E7%A0%81/</url>
@@ -77,7 +127,7 @@
       <link href="/2020/11/16/Linux_linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
       <url>/2020/11/16/Linux_linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
       
-        <content type="html"><![CDATA[<h1 id="linux基本命令"><a href="#linux基本命令" class="headerlink" title="linux基本命令"></a>linux基本命令</h1><ul><li>查看当前所在目录 <code>pwd</code></li><li>列出此目录下的文件和目录 <code>ls</code><ul><li><code>-a</code> 列出此目录下包括<strong>隐藏文件</strong>在内的所有文件和目录 [隐藏文件特点：文件名第一个字符为 <code>.</code>]</li><li><code>-l</code> 列出详细信息(长格式) [目录文件第一个字母为 <strong>d</strong> ,普通文件第一个字母为 <strong>-</strong> ]</li><li><code>-i</code> 显示inode节点号</li></ul></li><li>切换文件目录<ul><li>到/etc目录 <code>cd /etc</code></li><li>进入此目录下的tmp目录 <code>cd tmp</code>(开头无 <strong>/</strong> )</li><li>上一级目录 <code>cd ..</code></li><li>当前目录 <code>cd .</code></li><li>用户主目录 <code>cd</code></li></ul></li><li>查看文件内容<ul><li>cat查看文件file1内容 <code>cat file1</code><ul><li>显示行号 <code>cat -n file1</code></li></ul></li><li>less查看文件内容 <code>less file1</code> [按q退出]</li><li>more分屏显示文件内容 <code>more file1</code></li></ul></li><li>用man命令查看ls命令的使用手册 <code>man ls</code></li><li>date查看系统时间 <code>date</code></li><li>切换用户<code>su [-][用户名]</code><ul><li><code>-</code> 切换时同时切换用户的环境变量</li><li>若不带用户名则表示切换到root用户 <code>su</code></li></ul></li><li>文件检索命令<code>grep 字符串 [文件]</code><ul><li>grep命令在profile文件中对关键字then进行查询 <code>grep then profile</code></li></ul></li><li>查找文件命令 <code>find [路径][表达式]</code><ul><li><code>find / -name test</code>从根目录/查找名为test的文件<ul><li>找root用户自己的主目录下的所有名为newfile的文件 <code>find ~ -name newfile</code></li></ul></li></ul></li><li>输出重定向<ul><li>直接写入（覆盖） <code>&gt;</code></li><li>追加（到文件末尾）<code>&gt;&gt;</code><ul><li>ls命令在终端上显示的当前目录中的文件列表重定向到文件list中 <code>ls &gt; list</code>[先创建文件再添加内容]</li><li>把ls命令在终端上显示的当前目录中的文件列表重定向到文件list中（追加方式）<code>ls &gt;&gt; list</code></li></ul></li></ul></li><li>创建测试目录test <code>mkdir test</code></li><li>创建一个新的空文件newfile<ul><li>利用touch命令 <code>touch newfile</code></li></ul></li><li>cp复制命令<ul><li>复制test<strong>目录</strong>为testbak目录作为备份 <code>cp -r test testbak</code> <ul><li>-r 该目录及其子目录递归复制</li></ul></li><li>复制某目录下（/etc/profile）的<strong>文件</strong>到当前目录(<strong>./</strong> )<code>cp /etc/profile ./</code>[最后<strong>/</strong>可加可不加]</li><li>复制<strong>文件</strong>（profile)为新文件(profile.bak) <code>cp profile profile.bak</code></li><li>将file1复制到目录dir1中，复制后的文件名为file1.bak <code>cp file1 dir1/file1.bak</code></li></ul></li><li>mv移动命令<ul><li>把文件file1移动到test目录下 <code>mv file1 test</code></li><li>修改文件file1的文件名为file2 <code>mv file1 file2</code></li></ul></li><li>rm删除命令<ul><li>删除文件file1 <code>rm file1</code></li><li>删除目录dir <code>rm -r dir</code><ul><li><code>-r</code> 递归删除目录文件</li><li><code>-f</code> 不发出提示确认</li></ul></li></ul></li><li>rmdir 删除空目录命令 <code>rmdir [-p][目录名]</code><ul><li><code>-p</code> 递归删除，若子目录删除后父目录为空则递归删除父目录</li></ul></li><li>给文件创建连接<code>link [-s] 源文件 [目标文件]</code><ul><li>给文件profile创建一个<strong>符号链接</strong>lnsprofile <code>ln -s profile lnsprofile</code></li><li>给文件profile创建一个<strong>硬链接</strong>lnhprofile <code>ln profile lnhprofile</code></li></ul></li></ul><h3 id="参考链技"><a href="#参考链技" class="headerlink" title="参考链技"></a>参考链技</h3><p><a href="https://www.ruanyifeng.com/blog/2011/12/inode.html" target="_blank" rel="noopener">inode简单理解</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="linux基本命令"><a href="#linux基本命令" class="headerlink" title="linux基本命令"></a>linux基本命令</h1><ul><li>查看当前所在目录 <code>pwd</code></li><li>列出此目录下的文件和目录 <code>ls</code><ul><li><code>-a</code> 列出此目录下包括<strong>隐藏文件</strong>在内的所有文件和目录 [隐藏文件特点：文件名第一个字符为 <code>.</code>]</li><li><code>-l</code> 列出详细信息(长格式) [目录文件第一个字母为 <strong>d</strong> ,普通文件第一个字母为 <strong>-</strong> ]</li><li><code>-i</code> 显示inode节点号</li></ul></li><li>切换文件目录<ul><li>到/etc目录 <code>cd /etc</code></li><li>进入此目录下的tmp目录 <code>cd tmp</code>(开头无 <strong>/</strong> )</li><li>上一级目录 <code>cd ..</code></li><li>当前目录 <code>cd .</code></li><li>用户主目录 <code>cd</code></li></ul></li><li>查看文件内容<ul><li>cat查看文件file1内容 <code>cat file1</code><ul><li>显示行号 <code>cat -n file1</code></li></ul></li><li>less查看文件内容 <code>less file1</code> [按q退出]</li><li>more分屏显示文件内容 <code>more file1</code></li></ul></li><li>用man命令查看ls命令的使用手册 <code>man ls</code></li><li>date查看系统时间 <code>date</code></li><li>切换用户<code>su [-][用户名]</code><ul><li><code>-</code> 切换时同时切换用户的环境变量</li><li>若不带用户名则表示切换到root用户 <code>su</code></li></ul></li><li>文件检索命令<code>grep 字符串 [文件]</code><ul><li>grep命令在profile文件中对关键字then进行查询 <code>grep then profile</code></li></ul></li><li>查找文件命令 <code>find [路径][表达式]</code><ul><li><code>find / -name test</code>从根目录/查找名为test的文件<ul><li>找root用户自己的主目录下的所有名为newfile的文件 <code>find ~ -name newfile</code></li></ul></li></ul></li><li>输出重定向<ul><li>直接写入（覆盖） <code>&gt;</code></li><li>追加（到文件末尾）<code>&gt;&gt;</code><ul><li>ls命令在终端上显示的当前目录中的文件列表重定向到文件list中 <code>ls &gt; list</code>[先创建文件再添加内容]</li><li>把ls命令在终端上显示的当前目录中的文件列表重定向到文件list中（追加方式）<code>ls &gt;&gt; list</code></li></ul></li></ul></li><li>创建测试目录test <code>mkdir test</code><ul><li><code>-p</code> 递归生成目录：<code>mkdir -p dir/subdir</code></li></ul></li><li>创建一个新的空文件newfile<ul><li>利用touch命令 <code>touch newfile</code></li></ul></li><li>cp复制命令<ul><li>复制test<strong>目录</strong>为testbak目录作为备份 <code>cp -r test testbak</code> <ul><li>-r 该目录及其子目录递归复制</li></ul></li><li>复制某目录下（/etc/profile）的<strong>文件</strong>到当前目录(<strong>./</strong> )<code>cp /etc/profile ./</code>[最后<strong>/</strong>可加可不加]</li><li>复制<strong>文件</strong>（profile)为新文件(profile.bak) <code>cp profile profile.bak</code></li><li>将file1复制到目录dir1中，复制后的文件名为file1.bak <code>cp file1 dir1/file1.bak</code></li></ul></li><li>mv移动命令<ul><li>把文件file1移动到test目录下 <code>mv file1 test</code></li><li>修改文件file1的文件名为file2 <code>mv file1 file2</code></li></ul></li><li>rm删除命令<ul><li>删除文件file1 <code>rm file1</code></li><li>删除目录dir <code>rm -r dir</code><ul><li><code>-r</code> 递归删除目录文件</li><li><code>-f</code> 不发出提示确认</li></ul></li></ul></li><li>rmdir 删除空目录命令 <code>rmdir [-p][目录名]</code><ul><li><code>-p</code> 递归删除，若子目录删除后父目录为空则递归删除父目录</li></ul></li><li>给文件创建连接<code>ln [-s] 源文件 [目标文件]</code><ul><li>给文件profile创建一个<strong>符号链接</strong>lnsprofile <code>ln -s profile lnsprofile</code></li><li>给文件profile创建一个<strong>硬链接</strong>lnhprofile <code>ln profile lnhprofile</code></li></ul></li></ul><h3 id="参考链技"><a href="#参考链技" class="headerlink" title="参考链技"></a>参考链技</h3><p><a href="https://www.ruanyifeng.com/blog/2011/12/inode.html" target="_blank" rel="noopener">inode简单理解</a></p>]]></content>
       
       
       <categories>

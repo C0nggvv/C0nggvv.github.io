@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <title>
-        二分图匹配代码C++ | C0ngvv
+        linux安装GNOME桌面 | C0ngvv
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -116,13 +116,13 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">二分图匹配代码C++</a></h3>
+            <h3><a class="title-hover-animation">linux安装GNOME桌面</a></h3>
         </div>
 
         <div class="meta-info">
             <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-11-19 22:50:23
+        <i class="fa fa-calendar-o"></i> 2020-11-20 23:39:00
     </span>
     
         <span class="article-categories article-meta-item">
@@ -130,7 +130,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+                        <a href="/categories/Linux/">Linux</a>
                     </li>
                 
             </ul>
@@ -142,7 +142,7 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AE%97%E6%B3%95%E4%BB%A3%E7%A0%81/">常用的算法代码</a>
+                        <a href="/tags/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">Linux软件安装</a>
                     </li>
                 
             </ul>
@@ -155,12 +155,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>456 字</span>
+        <i class="fa fa-book"></i> <span>317 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-        <i class="fa fa-clock-o"></i> <span>2 分钟</span>
+        <i class="fa fa-clock-o"></i> <span>1 分钟</span>
         </span>
     
 </div>
@@ -168,144 +168,42 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="二分图最大匹配代码"><a href="#二分图最大匹配代码" class="headerlink" title="二分图最大匹配代码"></a>二分图最大匹配代码</h1><blockquote>
-<p> 《挑战程序设计竞赛》每日学习笔记，也为了方便查阅！</p>
+            <h1 id="linux安装GNOME桌面"><a href="#linux安装GNOME桌面" class="headerlink" title="linux安装GNOME桌面"></a>linux安装GNOME桌面</h1><blockquote>
+<p>Linux版本为CentOS 7. </p>
+<p>未完待更…</p>
 </blockquote>
-<h2 id="利用最大流算法求解二分图最大匹配"><a href="#利用最大流算法求解二分图最大匹配" class="headerlink" title="利用最大流算法求解二分图最大匹配"></a>利用最大流算法求解二分图最大匹配</h2><p>时间复杂度O(|V||E|)</p>
-<pre><code class="c++">#include &lt;stdio.h&gt;
-#include &lt;vector&gt;
-#include &lt;queue&gt;
-#include &lt;cstring&gt;
-using namespace std;
-#define MAX_V 1000
-const int inf=0x3fffffff;
-
-typedef struct edge{
-    int to,cap,rev;
-}edge;
-vector&lt;edge&gt; G[MAX_V];
-int level[MAX_V];
-int iter[MAX_V];
-
-void add_edge(int from,int to,int cap){
-    G[from].push_back((edge){to,cap,G[to].size()});
-    G[to].push_back((edge){from,0,G[from].size()-1});
-}
-
-void bfs(int s){
-    memset(level,-1,sizeof(level));
-    queue&lt;int&gt; que;
-    level[s]=0;
-    que.push(s);
-    while(!que.empty()){
-        int v=que.front();que.pop();
-        for(int i=0;i&lt;G[v].size();i++){
-            edge e=G[v][i];
-            if(e.cap&gt;0 &amp;&amp; level[e.to]&lt;0){
-                level[e.to]=level[v]+1;
-                que.push(e.to);
-            }
-        }
-    }
-}
-
-int dfs(int v,int t,int f){
-    if(v==t) return f;
-    for(int &amp;i=iter[v];i&lt;G[v].size();i++){
-        edge&amp; e=G[v][i];
-        if(e.cap&gt;0 &amp;&amp; level[e.to]&gt;level[v]){
-            int d=dfs(e.to,t,min(f,e.cap));
-            e.cap-=d;
-            G[e.to][e.rev].cap+=d;
-            return d;
-        }
-    }
-    return 0;
-}
-
-int max_flow(int s,int t){
-    int flow=0;
-    for(;;){
-        bfs(s);
-        if(level[t]&lt;0) return flow;
-        memset(iter,0,sizeof(iter));
-        int f;
-        while(f=dfs(s,t,inf)&gt;0){
-            flow+=f;
-        }
-    }
-
-}
-
-int main()
-{
-    //INPUT G[V],s,t
-    //int maxFlow=max_flow(s,t);
-    return 0;
-}</code></pre>
-<h2 id="利用二分图性质求解二分图最大匹配"><a href="#利用二分图性质求解二分图最大匹配" class="headerlink" title="利用二分图性质求解二分图最大匹配"></a>利用二分图性质求解二分图最大匹配</h2><pre><code class="c++">#include &lt;iostream&gt;
-#include &lt;vector&gt;
-#include &lt;cstring&gt;
-using namespace std;
-#define MAX_V 1000
-
-int V;        //顶点数
-vector&lt;int&gt; G[MAX_V];
-int match[MAX_V];
-bool used[MAX_V];
-
-void add_edge(int u,int v){
-    G[u].push_back(v);
-    G[v].push_back(u);
-}
-
-bool dfs(int v){
-    used[v]=true;
-    for(int i=0;i&lt;G[v].size();i++){
-        int u=G[v][i],w=match[u];
-        if(w&lt;0 || !used[w] &amp;&amp; dfs(w)){
-            match[u]=v;
-            match[v]=u;
-            return true;
-        }
-    }
-    return false;
-}
-
-int bipartite_matching(){
-    int res=0;
-    memset(match,-1,sizeof(match))
-    for(int v=0;v&lt;V;v++){
-        if(match[v]&lt;0){
-            memset(used,0,sizeof(used));
-            if(dfs(v)){
-                res++;
-            }
-        }
-    }
-    return res;
-}</code></pre>
+<h2 id="利用ISO完整版镜像本地离线安装"><a href="#利用ISO完整版镜像本地离线安装" class="headerlink" title="利用ISO完整版镜像本地离线安装"></a>利用ISO完整版镜像本地离线安装</h2><h3 id="1-YUM本地安装源获得"><a href="#1-YUM本地安装源获得" class="headerlink" title="1.YUM本地安装源获得"></a>1.YUM本地安装源获得</h3><p>查看光盘挂载情况 <code>mount</code></p>
+<p>若未被挂载或重新挂载：</p>
+<pre><code class="bash"></code></pre>
+<p>此挂载为临时挂载，若要永久挂载，可设置系统启动自动挂载，在<code>/etc/fstab</code>配置文件的最后一行添加下面代码，表示自动挂载。</p>
+<pre><code class="bash"></code></pre>
+<h3 id="2-YUM本地安装源配置"><a href="#2-YUM本地安装源配置" class="headerlink" title="2.YUM本地安装源配置"></a>2.YUM本地安装源配置</h3><h4 id="创建软件仓库的配置文件"><a href="#创建软件仓库的配置文件" class="headerlink" title="创建软件仓库的配置文件"></a>创建软件仓库的配置文件</h4><pre><code class="bash">mkdir /root/yum.repo                    #创建备份目录
+mv /etc/yum.repos.d/* /root/yum.repo    #移动备份文件
+vi /etc/yum.repos.d/local.repo            #创建新的配置文件</code></pre>
+<h4 id="编写repo文件并指向光盘镜像文件挂载点"><a href="#编写repo文件并指向光盘镜像文件挂载点" class="headerlink" title="编写repo文件并指向光盘镜像文件挂载点"></a>编写repo文件并指向光盘镜像文件挂载点</h4><p>在该新的配置文件local.repo内写入如下内容</p>
+<pre><code class="bash">[local]
+name=local
+baseurl=file:///mnt/cdrom        #指向镜像文件的挂载目录
+enabled=1                        #1表示可用状态
+gpgcheck=0                        #不检验待安装RPM包</code></pre>
+<h4 id="清除缓存"><a href="#清除缓存" class="headerlink" title="清除缓存"></a>清除缓存</h4><pre><code class="bash">yum clean all            #清除缓存
+yum makecahe            #把YUM源缓存到本地</code></pre>
+<h4 id="安装GNOME桌面"><a href="#安装GNOME桌面" class="headerlink" title="安装GNOME桌面"></a>安装GNOME桌面</h4><pre><code class="bash">yum grouplist                         #显示所有可用的的套件，其中有’GNOME Desktop&#39;
+yum groupinstall &#39;GNOME Desktop&#39;    #安装GNOME桌面，名字与上面一步出现的名字一致</code></pre>
+<h4 id="重启-amp-启动桌面"><a href="#重启-amp-启动桌面" class="headerlink" title="重启&amp;启动桌面"></a>重启&amp;启动桌面</h4><pre><code class="bash">reboot                    #重启
+startx                    #启动桌面服务</code></pre>
 
         </div>
 
         <div class="article-nav">
             
-                <div class="article-prev">
-                    <a class="prev btn"
-                       rel="prev"
-                       href="/2020/11/20/Linux_linux%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90/"
-                    >
-                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">linux用户与权限</span><span class="post-nav-item">上一篇</span>
-                    </a>
-                </div>
-            
             
                 <div class="article-next">
                     <a class="next btn"
                        rel="next"
-                       href="/2020/11/18/%E5%BB%BA%E6%A8%A1_python%E5%BB%BA%E6%A8%A1%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"
+                       href="/2020/11/20/Linux_linux%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90/"
                     >
-                        <span class="post-nav-title-item">python建模常用绘图命令</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                        <span class="post-nav-title-item">linux用户与权限</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
                     </a>
                 </div>
             
@@ -323,7 +221,7 @@ int bipartite_matching(){
         <div class="article-toc">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二分图最大匹配代码"><span class="nav-number">1.</span> <span class="nav-text">二分图最大匹配代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用最大流算法求解二分图最大匹配"><span class="nav-number">1.1.</span> <span class="nav-text">利用最大流算法求解二分图最大匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用二分图性质求解二分图最大匹配"><span class="nav-number">1.2.</span> <span class="nav-text">利用二分图性质求解二分图最大匹配</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#linux安装GNOME桌面"><span class="nav-number">1.</span> <span class="nav-text">linux安装GNOME桌面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#利用ISO完整版镜像本地离线安装"><span class="nav-number">1.1.</span> <span class="nav-text">利用ISO完整版镜像本地离线安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-YUM本地安装源获得"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.YUM本地安装源获得</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-YUM本地安装源配置"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.YUM本地安装源配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建软件仓库的配置文件"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">创建软件仓库的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写repo文件并指向光盘镜像文件挂载点"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">编写repo文件并指向光盘镜像文件挂载点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#清除缓存"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">清除缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装GNOME桌面"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">安装GNOME桌面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重启-amp-启动桌面"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">重启&amp;启动桌面</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 </div>
         </div>
